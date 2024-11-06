@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
                         </div>
 
                         <button className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
-                            Continue
+                            Continu
                         </button>
                     </div>
                 </div>
