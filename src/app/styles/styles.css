@@ -1,0 +1,9 @@
+.custom-height {
+    height: calc(100% - 109px); /* Login */
+  }
+
+.custom-background {
+  background-image: url('/images/login-background.svg');
+  background-size: cover; 
+  background-position: center;
+}
