@@ -9,19 +9,18 @@ const LoginPage: React.FC = () => {
                     <div className="flex justify-end">
                         <img src="/images/logo.svg" alt="Express Capital Financing Logo" className="h-12" />
                     </div>
-                    <div className="max-w-md w-full mx-auto mt-40 flex flex-col justify-center">
-                        <h1 className="font-inter font-extra-bold text-5xl leading-66 tracking--4 text-[#294C2B]">Welcome to Express Capital Financing</h1>
-                        <div className="pt-10 mb-6">
-                            <label className="block text-gray-700 mb-2" htmlFor="email">Enter email</label>
+                    <div className="max-w-md w-full mx-auto mt-40 flex flex-col justify-center px-10 sm:px-0">
+                        <h1 className="font-inter font-extra-bold text-4xl sm:text-5xl leading-[45px] sm:leading-66 tracking--4 text-primary">Welcome to Express Capital Financing</h1>
+                        <div className="pt-10 mb-[38px]">
                             <input
                                 type="email"
                                 id="email"
-                                placeholder="Enter your email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+                                placeholder="Enter email"
+                                className="w-full py-2 font-inter font-semibold text-[24px] leading-[32px] border-b border-[#121212] focus:outline-none focus:border-green-500 placeholder-secondary"
                             />
                         </div>
 
-                        <button className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                        <button className="w-full sm:w-2/3 bg-buttonprimary font-inter font-semibold text-[16px] leading-[24px] text-white py-[16px] rounded-full hover:bg-green-700 transition">
                             Continue
                         </button>
                     </div>
