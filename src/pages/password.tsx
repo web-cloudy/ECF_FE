@@ -1,9 +1,9 @@
 import React from 'react';
-
+import '../styles/custom.css';
 const PasswordPage: React.FC = () => {
     return (
         <div className="flex h-screen">
-            <div className="hidden md:flex flex-1 custom-background"></div>
+            <div className="hidden md:flex flex-1 passsword-background"></div>
             <div className="flex flex-1 flex-col bg-white pt-9 pr-10 md:w-1/2">
                 <div className="w-full h-screen">
                     <div className="flex justify-end">
@@ -14,9 +14,9 @@ const PasswordPage: React.FC = () => {
                         <div className="pt-10 mb-[38px]">
                             <input
                                 type="password"
-                                id="email"
+                                id="password"
                                 placeholder="Enter password"
-                                className="w-full py-2 font-inter font-semibold text-[24px] leading-[32px] border-b border-[#121212] focus:outline-none focus:border-green-500 placeholder-secondary"
+                                className="w-full py-2 font-inter font-semibold text-[24px] leading-[32px] border-b border-[#121212] focus:outline-none focus:border-green-500 placeholder-secondary text-primary"
                             />
                         </div>
 
