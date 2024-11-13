@@ -1,14 +1,43 @@
 import React, { useState } from 'react';
-import InputFiled from '../components/InputField'
+import { useRouter } from 'next/router';
+import axios from 'axios';
+
+
 import InputField from '../components/InputField';
+
 
 const Login: React.FC = () => {
 
-   const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const router = useRouter();
 
-   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+
+    const handleEmailSubmit = async () => {
+        // try {
+        //     const response = await axios.post('http://localhost:4000/api/auth/login/email', { email });
+
+        //     if (response.status === 200) {
+        //         router.push({
+        //             pathname: '/Password',
+        //             query: { email },
+        //         });
+        //     }
+        // } catch (error: any) {
+        //     setMessage(error.response?.data?.message || 'Email verification failed');
+        // }
+        if(!email) {
+            setMessage('Please enter a valid email address');
+            return;
+        }
+        router.push({
+            pathname: '/Password',
+            query: {email},
+        })
+    }
 
     return (
         <div className="flex h-screen">
@@ -25,13 +54,17 @@ const Login: React.FC = () => {
                                 type="email"
                                 id="email"
                                 placeholder="Enter email"
-                                className="w-full py-2 font-inter font-semibold text-[24px] leading-[32px] border-b border-[#121212] focus:outline-none focus:border-green-500 placeholder-secondary text-primary"
+                                className="w-full py-2 font-inter font-semibold text-[24px] leading-[32px] border-b border-[#121212] focus:outline-none placeholder-secondary text-primary"
                                 value={email}
                                 onChange={handleEmailChange}
                             />
                         </div>
-
-                        <button className="w-full sm:w-2/3 bg-buttonprimary font-inter font-semibold text-[16px] leading-[24px] text-white py-[16px] rounded-full hover:bg-green-700 transition">
+                        {message && (
+                            <div className="text-red-500 text-sm mb-4">{message}</div>
+                        )}
+                        <button className="w-full sm:w-2/3 bg-buttonprimary font-inter font-semibold text-[16px] leading-[24px] text-white py-[16px] rounded-full hover:bg-green-700 transition"
+                            onClick={handleEmailSubmit}
+                        >
                             Continue
                         </button>
                     </div>
