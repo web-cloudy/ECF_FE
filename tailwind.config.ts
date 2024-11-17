@@ -18,6 +18,7 @@ export default {
 
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        lato: ['Lato', 'sans-serif']
       },
       fontWeight: {
         'extra-bold': '650',
