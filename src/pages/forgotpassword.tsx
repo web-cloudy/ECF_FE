@@ -1,4 +1,5 @@
 import React, {useState } from 'react';
+import Image from 'next/image';
 import InputField from '../components/InputField'
 
 const ForgotPassword: React.FC = () => {
@@ -13,7 +14,13 @@ const ForgotPassword: React.FC = () => {
             <div className="flex flex-1 flex-col bg-white pt-9 pr-10 md:w-1/2">
                 <div className="w-full h-screen">
                     <div className="flex justify-end">
-                        <img src="/images/logo.svg" alt="Express Capital Financing Logo" className="h-12" />
+                        <Image
+                            src="/images/logo.svg"           // Path to the image
+                            alt="Express Capital Financing Logo"  // Alt text for accessibility
+                            className="h-12"                 // Tailwind class for styling (height)
+                            width={48}                       // Width corresponding to h-12 (3rem or 48px)
+                            height={48}                      // Height matching the h-12 class (3rem or 48px)
+                        />
                     </div>
                     <div className="max-w-md w-full mx-auto mt-40 flex flex-col justify-center px-10 sm:px-0">
                         <h1 className="font-inter font-extra-bold text-4xl sm:text-5xl leading-[45px] sm:leading-66 tracking--4 text-primary">Forgot Password</h1>

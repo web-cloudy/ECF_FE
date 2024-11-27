@@ -6,7 +6,7 @@ interface SidebarItemProps {
     iconColor: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ icon, name, iconColor }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ icon, name }) => {
     return (
         <li className="flex items-center space-x-4 pl-[28px] py-[12px] hover:bg-[#F5FBEA] hover:text-[#006838] cursor-pointer group">
             <span className="icon flex justify-center items-center" style={{ width: "20px", height: "20px" }}>

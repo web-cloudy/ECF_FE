@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from 'next/image';
 import { DropDown } from "../layout/Icons";
 
 interface MenuProfileProps {
@@ -21,7 +22,13 @@ const MenuProfile: React.FC<MenuProfileProps> = ({ image, name, role }) => {
         onClick={toggleDropdown}
       >
         <div>
-          <img src={image} alt={`${name}'s profile`} className="rounded-full" />
+          <Image
+            src={image}                    // Dynamic image source
+            alt={`${name}'s profile`}       // Dynamic alt text
+            className="rounded-full"       // Tailwind class for styling
+            width={100}                     // Specify width (for example 100px)
+            height={100}                    // Specify height (for example 100px)
+          />
         </div>
         <div>
           <div className="font-lato text-[12px] font-bold leading-[18px] text-[#344054]">

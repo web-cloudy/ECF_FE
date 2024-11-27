@@ -1,12 +1,21 @@
 import React from 'react';
 import SidebarItem from './SidebarItem';
+import Image from 'next/image';
 import { HomeIcon, TaskIcon, LeadIcon, LoanIcon, PricingIcon, MarketingIcon, ReportIcon, UserIcon, HelpCenter, LogOut } from './Icons';
 
 const Sidebar: React.FC = () => {
   return (
     <div className="sidebar bg-gray-100 h-screen border-r-2 border-[#eaecf0]">
       <div className='p-4'>
-        <img src="/images/logo.svg" alt="Express Capital Financing Logo" className="h-12" />
+      <Image
+        src="/images/logo.svg"        // Image path
+        alt="Express Capital Financing Logo"  // Alt text
+        className="h-12"              // Tailwind class for height
+        width={48}                    // Set a specific width (based on h-12, which is 3rem or 48px)
+        height={48}                   // Set the height (to maintain aspect ratio)
+        priority                     // Optional: If this is a critical image to load first
+      />
+
       </div>
       <div className='flex flex-col h-[calc(100vh-200px)] justify-between '>
         <nav className='pt-[34px]'>

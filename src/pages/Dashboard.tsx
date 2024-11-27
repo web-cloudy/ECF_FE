@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import Sidebar from '../components/layout/Sidebar';
 import Navbar from '../components/layout/Navbar';
-import UserTable from '../components/usermanagement/UseerTable';
 import SearchFilter from '../components/Buttons/SearchFilter';
 import RectangleButton from "../components/Buttons/RetangleButton";
 import { Plus } from '../components/layout/Icons';
@@ -298,9 +297,7 @@ const Dashboard: React.FC = () => {
                         </label>
                     </div>
                     <div className="w-full">
-                        <textarea  className="w-full text-[#344054] border border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px]" 
-                                   rows="6"
-                        />
+                        <textarea  className="w-full text-[#344054] border border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px]" rows={6}/>
                     </div>
                 </div>
             </UserModal>}
