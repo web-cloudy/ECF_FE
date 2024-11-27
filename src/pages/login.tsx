@@ -33,7 +33,7 @@ const Login: React.FC = () => {
             return;
         }
         router.push({
-            pathname: '/Password',
+            pathname: '/password',
             query: {email},
         })
     }
