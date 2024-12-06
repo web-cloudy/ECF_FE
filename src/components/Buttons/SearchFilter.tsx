@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { Search } from '../layout/Icons';
 import RectangleButton from './RetangleButton';
 import CircleButton from './CircleButton';
-import { Setting } from '../layout/Icons';
-import { Filter } from '../layout/Icons';
-import { Vertical } from '../layout/Icons';
-import { Menu } from '../layout/Icons';
+import { Menu, Filter, Message, Phone, Edit, Delete, Search, Setting, Vertical } from '../layout/Icons';
 
 // Define User interface for TypeScript
 interface User {
@@ -24,44 +20,41 @@ interface SearchTableProps {
 }
 
 const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
-    const [query, setQuery] = useState(''); 
+    const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState<User[]>(data);
-    const [selectedRow, setSelectedRow ] = useState<number | null>(null);
+    const [selectedRow, setSelectedRow] = useState<number | null>(null);
     const [checkBoxRows, setCheckedRows] = useState<Set<number>>(new Set());
-
+    const [isHovered, setIsHovered] = useState(-1);
 
     // Handle search input change
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchQuery = event.target.value;
         setQuery(searchQuery);
-
         const filtered = data.filter((user) =>
             Object.values(user).some((value) =>
                 value.toLowerCase().includes(searchQuery.toLowerCase())
             )
         );
-        setFilteredData(filtered); 
+        setFilteredData(filtered);
     };
 
     const handleRowClick = (index: number) => {
         const isAlreadyChecked = checkBoxRows.has(index);
-     
         setSelectedRow(index === selectedRow ? null : index);
         if (isAlreadyChecked) {
-            handleCheckboxChange(index); 
+            handleCheckboxChange(index);
         } else {
             handleCheckboxChange(index);
         }
     }
 
     const handleCheckboxChange = (index: number) => {
-
         setCheckedRows((prev) => {
             const newCheckedRows = new Set(prev);
             if (newCheckedRows.has(index)) {
-                newCheckedRows.delete(index); 
+                newCheckedRows.delete(index);
             } else {
-                newCheckedRows.add(index); 
+                newCheckedRows.add(index);
             }
             return newCheckedRows;
         });
@@ -94,16 +87,16 @@ const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
                         />
                     </div>
                     <div className='flex pb-[16px]'>
-                            <CircleButton
-                                icon={<Vertical color="#A8B0B9" />}
-                                iconColor="#006838"
-                                className="rounded-l-[8px]"
-                            />
-                            <CircleButton
-                                icon={<Menu color="#A8B0B9" />}
-                                iconColor="#006838"
-                                className="rounded-r-[8px]"
-                            />
+                        <CircleButton
+                            icon={<Vertical color="#A8B0B9" />}
+                            iconColor="#006838"
+                            className="rounded-l-[8px]"
+                        />
+                        <CircleButton
+                            icon={<Menu color="#A8B0B9" />}
+                            iconColor="#006838"
+                            className="rounded-r-[8px]"
+                        />
                     </div>
                     <div>
                         <CircleButton
@@ -135,15 +128,15 @@ const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
                             <tr
                                 key={index}
                                 onClick={() => handleRowClick(index)}
-                                className={`${
-                                    index % 2 === 0 ? 'bg-white' : 'bg-[#EAECF0]'
-                                } ${selectedRow === index ? 'bg-[#FFFAEC]' : ''}`} 
+                                className={`${isHovered === index ? 'bg-[#FFFAEC]' : index % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}`}
+                                onMouseEnter={() => setIsHovered(index)}
+                                onMouseLeave={() => setIsHovered(-1)}
                             >
                                 <td className="p-2 justify-center">
-                                    <input 
-                                    type="checkbox" 
-                                    checked={checkBoxRows.has(index)}
-                                    onChange={() => handleCheckboxChange(index)}
+                                    <input
+                                        type="checkbox"
+                                        checked={checkBoxRows.has(index)}
+                                        onChange={() => handleCheckboxChange(index)}
                                     />
                                 </td>
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.name}</td>
@@ -153,7 +146,17 @@ const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.role}</td>
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.email}</td>
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.businessPhone}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.cellPhone}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">
+                                    {isHovered === index ? (
+                                        <div className="display-flex gap-[3px]">
+                                            <button><Message color="" /></button>
+                                            <button><Phone color="" /></button>
+                                            <button><Edit color="" /></button>
+                                            <button><Delete color="" /></button>
+                                        </div>
+                                    )
+                                        : user.cellPhone}
+                                </td>
                             </tr>
                         ))
                     ) : (

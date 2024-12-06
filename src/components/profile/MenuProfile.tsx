@@ -10,24 +10,23 @@ interface MenuProfileProps {
 
 const MenuProfile: React.FC<MenuProfileProps> = ({ image, name, role }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
-    <div className="relative bg-[#FAF5E6]">
+    <div className="relative">
       <div
-        className="flex items-center rounded-full border border-red-[#D8DCE5] gap-2 cursor-pointer"
+        className="flex items-center rounded-l-full rounded-r-full gap-2 cursor-pointer bg-[#FAF5E6]"
         onClick={toggleDropdown}
       >
         <div>
           <Image
-            src={image}                    // Dynamic image source
-            alt={`${name}'s profile`}       // Dynamic alt text
-            className="rounded-full"       // Tailwind class for styling
-            width={100}                     // Specify width (for example 100px)
-            height={100}                    // Specify height (for example 100px)
+            src={image}
+            alt={`${name}'s profile`}
+            className="rounded-full"
+            width={40}
+            height={40}
           />
         </div>
         <div>
@@ -39,8 +38,8 @@ const MenuProfile: React.FC<MenuProfileProps> = ({ image, name, role }) => {
           </div>
         </div>
         {/* Custom SVG Icon */}
-        <div className="ml-2">
-           <DropDown color="" />
+        <div className="ml-2 pr-3">
+          <DropDown color="" />
         </div>
       </div>
 

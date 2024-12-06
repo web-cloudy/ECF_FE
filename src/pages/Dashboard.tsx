@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Sidebar from '../components/layout/Sidebar';
 import Navbar from '../components/layout/Navbar';
 import SearchFilter from '../components/Buttons/SearchFilter';
@@ -15,7 +14,6 @@ const Dashboard: React.FC = () => {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     }
-
     const data = [
         {
             name: 'John Doe',
@@ -117,7 +115,6 @@ const Dashboard: React.FC = () => {
             businessPhone: '555-123-4567',
             cellPhone: '555-765-4321',
         },
-        // Add more users here...
     ];
 
     return (
@@ -132,7 +129,7 @@ const Dashboard: React.FC = () => {
                             <RectangleButton
                                 icon={<Plus color="" />}
                                 name="New Staff"
-                                className="flex bg-[#009345]"
+                                className="flex bg-[#009345] text-white"
                                 onClick={handleOpenModal}
                             />
                         </div>
@@ -141,7 +138,6 @@ const Dashboard: React.FC = () => {
                         </div>
                         <div>
                             <SearchFilter data={data} />
-
                         </div>
                     </div>
                 </div>
@@ -297,7 +293,7 @@ const Dashboard: React.FC = () => {
                         </label>
                     </div>
                     <div className="w-full">
-                        <textarea  className="w-full text-[#344054] border border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px]" rows={6}/>
+                        <textarea className="w-full text-[#344054] border border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px]" rows={6} />
                     </div>
                 </div>
             </UserModal>}
