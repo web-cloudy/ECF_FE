@@ -31,11 +31,10 @@ const Password: React.FC = () => {
             // Make a POST request to validate the email and password
             router.push('/dashboard');
             const response = await axios.post('http://localhost:4000/api/auth/login', { email, password });
-
-            if (response.status === 200) {
+            // if (response.status === 200) {
                 // If the login is successful, navigate to the Dashboard
                 router.push('/dashboard');
-            }
+            // }
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
                 setMessage(error.response?.data?.message || 'Login failed');
