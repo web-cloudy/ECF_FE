@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {checkEmail} from '../../services/apis/server'; // Centralized axios instance
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const checkEmailExists = createAsyncThunk(
     'auth/checkEmailExists',

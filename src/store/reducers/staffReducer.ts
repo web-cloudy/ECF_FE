@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 // Define the staff state type
 interface StaffState {

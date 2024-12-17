@@ -4,6 +4,7 @@ import {
     addStaffFailure
 } from '../reducers/staffReducer';
 import { fetchStaff, addStaff } from '../../services/apis/server';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const getStaffList = () => async (dispatch: AppDispatch) => {
     dispatch(fetchStaffStart());

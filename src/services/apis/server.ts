@@ -1,5 +1,6 @@
 import Api from '../api';
 import { FETCH_STAFF, CHECK_EMAIL, ADD_STAFF, LOGIN } from '../endPoints';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const fetchStaff = async ()=> {
     try {

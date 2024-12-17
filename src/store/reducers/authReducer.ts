@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkEmailExists } from '../actions/authAction';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Define the Auth state type
 interface AuthState {
   isAuthenticated: boolean;

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { store } from '../store/store';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Define types for parameters in the Api class methods
 interface ApiParams {
     [key: string]: string | number | boolean | undefined;

@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../store/store';
 import InputField from '../components/InputField';
-import Api from '../services/api';
-import {CHECK_EMAIL} from '../services/endPoints';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const Login: React.FC = () => {
-    const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const router = useRouter();

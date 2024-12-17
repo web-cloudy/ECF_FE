@@ -8,7 +8,6 @@ import SearchFilter from '../components/Buttons/SearchFilter';
 import RectangleButton from '../components/Buttons/RetangleButton';
 import { Plus } from '../components/layout/Icons';
 import UserModal from '../components/modal/UserModal';
-import { store } from '../store/store';
 
 interface User {
   name: string;
@@ -22,7 +21,6 @@ interface User {
 }
 
 const Dashboard: React.FC = () => {
-  const state = store.getState();
   const dispatch = useDispatch<AppDispatch>();
   const { staffList, loading, error } = useSelector((state: RootState) => state.staff);
   const [selectedStaff, setSelectedStaff] = useState<User | null>(null);
@@ -31,7 +29,6 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     dispatch(getStaffList());
   }, [dispatch]);
-  console.log(staffList);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

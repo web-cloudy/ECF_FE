@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, store } from '../../store/store';
+import { AppDispatch } from '../../store/store';
 import { addNewStaff } from '../../store/actions/staffActions';
 
 interface UserModalProps {
@@ -21,8 +21,18 @@ interface UserModalProps {
   } | null;
 }
 
+interface FormErrors {
+  name?: string;
+  title?: string;
+  company?: string;
+  group?: string;
+  role?: string;
+  email?: string;
+  business_phone?: string;
+  cell_phone?: string;
+}
+
 const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
-  const state = store.getState();
   const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState({
     name: '',
@@ -38,8 +48,8 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
     note: '',
   });
 
-  const [errors, setErrors] = useState<any>({});
-  const [isSubmitted, setIsSubmitted] = useState(false); // To track whether the form was submitted
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false); // To track whether the form was submitted
 
   useEffect(() => {
     if (staff) {
@@ -83,7 +93,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
 
   const handleSubmit = () => {
     setIsSubmitted(true); // Mark the form as submitted
-    const validationErrors: any = {};
+    const validationErrors: FormErrors = {};
 
     // Validate fields flexibly
     if (!formData.name) validationErrors.name = 'Name is required';
@@ -112,7 +122,6 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
           ...prevState,
         };
       });
-      console.log(formData);
       dispatch(addNewStaff(formData));
     }
     onClose();
