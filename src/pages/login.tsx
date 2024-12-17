@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store/store';
 import InputField from '../components/InputField';
+import Api from '../services/api';
+import {CHECK_EMAIL} from '../services/endPoints';
 
 
 const Login: React.FC = () => {
-
+    const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const router = useRouter();
@@ -16,18 +19,14 @@ const Login: React.FC = () => {
     };
 
     const handleEmailSubmit = async () => {
-        // try {
-        //     const response = await axios.post('http://localhost:4000/api/auth/login/email', { email });
-
-        //     if (response.status === 200) {
-        //         router.push({
-        //             pathname: '/Password',
-        //             query: { email },
-        //         });
-        //     }
-        // } catch (error: any) {
-        //     setMessage(error.response?.data?.message || 'Email verification failed');
-        // }
+        try {
+            router.push({
+                pathname: '/password',
+                query: { email },
+            });
+        } catch (error: any) {
+            setMessage(error.response?.data?.message || 'Email verification failed');
+        }
         if(!email) {
             setMessage('Please enter a valid email address');
             return;
