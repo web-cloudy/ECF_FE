@@ -11,15 +11,17 @@ interface User {
     group: string;
     role: string;
     email: string;
-    businessPhone: string;
-    cellPhone: string;
+    business_phone: string;
+    cell_phone: string;
 }
 
 interface SearchTableProps {
     data: User[];
+    onRowSelect: (user: User) => void; // Add this prop
+    handleOpenModal: () => void;
 }
 
-const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
+const SearchTable: React.FC<SearchTableProps> = ({ data, onRowSelect, handleOpenModal }) => {
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState<User[]>(data);
     const [selectedRow, setSelectedRow] = useState<number | null>(null);
@@ -60,6 +62,10 @@ const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
         });
     };
 
+    const onEdit = (user: User) => {
+        onRowSelect(user);
+        handleOpenModal();
+    }
     return (
         <div className="search-table-container">
             <div className='flex'>
@@ -145,17 +151,16 @@ const SearchTable: React.FC<SearchTableProps> = ({ data }) => {
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.group}</td>
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.role}</td>
                                 <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.email}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.businessPhone}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.business_phone}</td>                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">
                                     {isHovered === index ? (
-                                        <div className="display-flex gap-[3px]">
+                                         <span className="display-flex gap-[3px]">
                                             <button><Message color="" /></button>
                                             <button><Phone color="" /></button>
-                                            <button><Edit color="" /></button>
+                                            <button  onClick={() => onEdit(user)}><Edit color=""/></button>
                                             <button><Delete color="" /></button>
-                                        </div>
+                                        </span>
                                     )
-                                        : user.cellPhone}
+                                        : user.cell_phone}
                                 </td>
                             </tr>
                         ))

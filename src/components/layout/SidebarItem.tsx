@@ -1,16 +1,14 @@
 import React from "react";
 interface SidebarItemProps {
     icon: JSX.Element;
-    key?: number;
     title: string;
     isActive?: boolean;
     onClick?: () => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ key, icon, title, isActive, onClick }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ icon, title, isActive, onClick }) => {
     return (
         <li
-            key={key}
             onClick={onClick} // Notify parent when clicked
             className="relative flex items-center space-x-4 pl-[28px] py-[12px] hover:bg-[#F5FBEA] hover:text-[#006838] cursor-pointer group"
         >

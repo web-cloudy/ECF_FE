@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
             {
               siderbarItems.map((item, index) => (
                 <SidebarItem
-                  key={index}
+                  key={index} // Use a unique identifier here
                   icon={item.icon}
                   title={item.title}
                   isActive={activeButton === index} // Pass active state
