@@ -17,7 +17,7 @@ const initialState: AuthState = {
   emailExists: null,
   loading: false,
   error: null,
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwic3ViIjoxLCJyb2xlIjoiT2ZmaWNlciIsImlhdCI6MTczNDEwNDAyNCwiZXhwIjoxNzM2MDkxMjI0fQ.hPGZqKZlgwzJC5dm3lHBnzoaHvqr4AimBLprVFfTBzQ"
+  token: ""
 };
 
 // Create a slice for authentication
@@ -31,6 +31,7 @@ const authSlice = createSlice({
     },
     loginSuccess(state, action: PayloadAction<any>) { // You can specify the action type (e.g., User)
       state.user = action.payload;
+      state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
     },

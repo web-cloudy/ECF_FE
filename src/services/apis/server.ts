@@ -1,5 +1,5 @@
 import Api from '../api';
-import { FETCH_STAFF, CHECK_EMAIL, ADD_STAFF } from '../endPoints';
+import { FETCH_STAFF, CHECK_EMAIL, ADD_STAFF, LOGIN } from '../endPoints';
 
 export const fetchStaff = async ()=> {
     try {
@@ -29,6 +29,16 @@ export const checkEmail = async (email: string) => {
         return response.data;
     } catch (error) {
         console.error("Error checking email:", error);
+        throw error;
+    }
+};
+
+export const login = async (data: any) => {
+    try {
+        const response = await Api.post(LOGIN, data);
+        return response;
+    } catch (error) {
+        console.error("Error checking user:", error);
         throw error;
     }
 };

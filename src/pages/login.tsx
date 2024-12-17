@@ -20,15 +20,10 @@ const Login: React.FC = () => {
 
     const handleEmailSubmit = async () => {
         try {
-            var result = await Api.post(CHECK_EMAIL, email);
-            if (result.exists) {
-                router.push({
-                    pathname: '/password',
-                    query: { email },
-                });
-            } else {
-                setMessage('Email does not exist');
-            }
+            router.push({
+                pathname: '/password',
+                query: { email },
+            });
         } catch (error: any) {
             setMessage(error.response?.data?.message || 'Email verification failed');
         }

@@ -84,7 +84,9 @@ class Api {
                 'Content-Type': 'application/json'
             };
 
-            if (route !== 'https://saviour.earth/ZoomIn/api/index.php/Trivia/addTrivia' && state.auth.token) {
+            console.log(state, "state");
+
+            if (state.auth.token) {
                 headers.Authorization = `Bearer ${state.auth.token}`;
             }
 

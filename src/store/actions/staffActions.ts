@@ -21,6 +21,7 @@ export const addNewStaff = (staffData: any) => async (dispatch: AppDispatch) => 
     try {
         const newStaff = await addStaff(staffData); // Call your API to add staff
         dispatch(addStaffSuccess(newStaff)); // Dispatch success with the new staff data
+        dispatch(getStaffList());
     } catch (error: any) {
         dispatch(addStaffFailure(error.message)); // Dispatch failure if an error occurs
     }

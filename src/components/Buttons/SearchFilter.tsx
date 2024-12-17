@@ -145,13 +145,13 @@ const SearchTable: React.FC<SearchTableProps> = ({ data, onRowSelect, handleOpen
                                         onChange={() => handleCheckboxChange(index)}
                                     />
                                 </td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.name}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.title}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.company}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.group}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.role}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.email}</td>
-                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user.business_phone}</td>                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.name}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.title}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.company}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.group}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.role}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.email}</td>
+                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">{user?.business_phone}</td>                                <td className="p-2 text-[#353B44] text-[14px] font-lato font-normal leading-[20px]">
                                     {isHovered === index ? (
                                          <span className="display-flex gap-[3px]">
                                             <button><Message color="" /></button>
@@ -160,7 +160,7 @@ const SearchTable: React.FC<SearchTableProps> = ({ data, onRowSelect, handleOpen
                                             <button><Delete color="" /></button>
                                         </span>
                                     )
-                                        : user.cell_phone}
+                                        : user?.cell_phone}
                                 </td>
                             </tr>
                         ))

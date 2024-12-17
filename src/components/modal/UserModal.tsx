@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store/store';
+import { AppDispatch, store } from '../../store/store';
 import { addNewStaff } from '../../store/actions/staffActions';
 
 interface UserModalProps {
@@ -22,6 +22,7 @@ interface UserModalProps {
 }
 
 const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
+  const state = store.getState();
   const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState({
     name: '',
@@ -76,6 +77,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+      account_right: "Manager",
     }));
   };
 
@@ -105,11 +107,13 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, staff }) => {
         // dispatch(updateStaff(formData));
     }
     else{
-        setFormData((prevState) => ({
+      setFormData((prevState) => {
+        return {
           ...prevState,
-          account_right: "Manager",
-        }));
-        dispatch(addNewStaff(formData));
+        };
+      });
+      console.log(formData);
+      dispatch(addNewStaff(formData));
     }
     onClose();
   };

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import { useDispatch } from "react-redux";
 import { AxiosError } from 'axios';
 import Image from 'next/image';
-import InputField from '../components/InputField'
+import InputField from '../components/InputField';
+import { login } from '@/services/apis/server';
+import { loginSuccess } from '@/store/reducers/authReducer';
 
 const Password: React.FC = () => {
+    const dispatch = useDispatch();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -28,13 +31,12 @@ const Password: React.FC = () => {
             return;
         }
         try {
-            // Make a POST request to validate the email and password
-            router.push('/dashboard');
-            const response = await axios.post('http://localhost:4000/api/auth/login', { email, password });
-            // if (response.status === 200) {
+            const response = await login({email, password});
+            dispatch(loginSuccess(response));
+            if (response.token) {
                 // If the login is successful, navigate to the Dashboard
                 router.push('/dashboard');
-            // }
+            }
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
                 setMessage(error.response?.data?.message || 'Login failed');
