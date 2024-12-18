@@ -33,7 +33,7 @@ const Password: React.FC = () => {
         try {
             const response = await login({email, password});
             dispatch(loginSuccess(response));
-            if (response.token) {
+            if (response.user) {
                 // If the login is successful, navigate to the Dashboard
                 router.push('/dashboard');
             }

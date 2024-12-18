@@ -33,7 +33,6 @@ const authSlice = createSlice({
     },
     loginSuccess(state, action: PayloadAction<any>) { // You can specify the action type (e.g., User)
       state.user = action.payload;
-      state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
     },

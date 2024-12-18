@@ -77,40 +77,38 @@ class Api {
 
     static xhr(route: string, data: any = {}, params: ApiParams = {}, method: string): Promise<any> {
         const state = store.getState();
-
+    
         const sendRequest = (axiosInstance: AxiosInstance): Promise<any> => {
             const url = Api.replaceVariables(route, params);
             const headers: { [key: string]: string } = {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             };
-
+    
             console.log(state, "state");
-
-            if (state.auth.token) {
-                headers.Authorization = `Bearer ${state.auth.token}`;
-            }
-
+    
+    
             const options: AxiosRequestConfig = {
                 baseURL: process.env.NEXT_PUBLIC_API_URL,
                 url,
                 method,
                 headers,
-                timeout: 15000
+                timeout: 15000,
+                withCredentials: true, 
             };
-
+    
             if (method === 'get') {
                 options.params = data;
             } else {
                 options.data = data;
             }
-
+    
             return axiosInstance(options)
                 .then((res: AxiosResponse) => res.data)
                 .catch((err) => {
                     return Api.wrapApiErrors(err);
                 });
         };
-
+    
         return sendRequest(axios.create());
     }
 
