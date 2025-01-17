@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch } from "react-redux";
-import { AxiosError } from 'axios';
+// import { useDispatch } from "react-redux";
+// import { AxiosError } from 'axios';
 import Image from 'next/image';
 import InputField from '../components/InputField';
-import { login } from '@/services/apis/server';
-import { loginSuccess } from '@/store/reducers/authReducer';
+// import { login } from '@/services/apis/server';
+// import { loginSuccess } from '@/store/reducers/authReducer';
 
 const Password: React.FC = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    // const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const router = useRouter();
 
-    useEffect(() => {
-        // Retrieve the email from the query params when the component mounts
-        if (router.query.email) {
-            setEmail(router.query.email as string);
-        }
-    }, [router.query.email]);
+    // useEffect(() => {
+    //     // Retrieve the email from the query params when the component mounts
+    //     if (router.query.email) {
+    //         setEmail(router.query.email as string);
+    //     }
+    // }, [router.query.email]);
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
