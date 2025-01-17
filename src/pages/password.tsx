@@ -31,12 +31,12 @@ const Password: React.FC = () => {
             return;
         }
         try {
-            const response = await login({email, password});
-            dispatch(loginSuccess(response));
-            if (response.token) {
+            // const response = await login({email, password});
+            // dispatch(loginSuccess(response));
+            // if (response.token) {
                 // If the login is successful, navigate to the Dashboard
                 router.push('/dashboard');
-            }
+            // }
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
                 setMessage(error.response?.data?.message || 'Login failed');
