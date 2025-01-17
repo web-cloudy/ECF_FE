@@ -30,20 +30,20 @@ const Password: React.FC = () => {
             setMessage('Please enter your password');
             return;
         }
-        try {
+        // try {
             // const response = await login({email, password});
             // dispatch(loginSuccess(response));
             // if (response.token) {
                 // If the login is successful, navigate to the Dashboard
                 router.push('/dashboard');
             // }
-        } catch (error: unknown) {
-            if (error instanceof AxiosError) {
-                setMessage(error.response?.data?.message || 'Login failed');
-            } else {
-                setMessage('An unexpected error occurred');
-            }
-        }
+        // } catch (error: unknown) {
+        //     if (error instanceof AxiosError) {
+        //         setMessage(error.response?.data?.message || 'Login failed');
+        //     } else {
+        //         setMessage('An unexpected error occurred');
+        //     }
+        // }
     };
 
     return (
