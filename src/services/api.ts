@@ -84,12 +84,10 @@ class Api {
                 'Content-Type': 'application/json'
             };
 
-            console.log(state, "state");
-
             if (state.auth.token) {
                 headers.Authorization = `Bearer ${state.auth.token}`;
             }
-
+            
             const options: AxiosRequestConfig = {
                 baseURL: process.env.NEXT_PUBLIC_API_URL,
                 url,
@@ -116,7 +114,6 @@ class Api {
 
     static uploadFiles(route: string, data: any, params: ApiParams, files: File[]): Promise<any> {
         const state = store.getState();
-        console.log('apidata:', route, data, params, files);
 
         const sendRequest = (axiosInstance: AxiosInstance): Promise<any> => {
             const url = Api.replaceVariables(route, params);
@@ -130,11 +127,9 @@ class Api {
 
             const formData = new FormData();
             for (const file of files) {
-                console.log('file::', file);
                 formData.append('file[]', file);
             }
-            console.log('formdata:', formData);
-            Object.keys(data).forEach((key) => formData.append(key, data[key]));
+           Object.keys(data).forEach((key) => formData.append(key, data[key]));
 
             const options: AxiosRequestConfig = {
                 baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -157,7 +152,6 @@ class Api {
 
     static uploadFile(route: string, data: any, params: ApiParams, file: File): Promise<any> {
         const state = store.getState();
-        console.log('apidata:', route, data, params, file);
 
         const sendRequest = (axiosInstance: AxiosInstance): Promise<any> => {
             const url = Api.replaceVariables(route, params);
@@ -171,7 +165,6 @@ class Api {
 
             const formData = new FormData();
             formData.append('file', file);
-            console.log('formdata:', formData);
             Object.keys(data).forEach((key) => formData.append(key, data[key]));
 
             const options: AxiosRequestConfig = {

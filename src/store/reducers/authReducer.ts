@@ -2,6 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkEmailExists } from '../actions/authAction';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+// Define a User type if possible
+interface User {
+  id: number;
+  role: string;
+  token: string;
+}
+
+// Payload type for login success
+interface LoginSuccessPayload {
+  message: string;
+  user: User;
+}
+
 // Define the Auth state type
 interface AuthState {
   isAuthenticated: boolean;
@@ -32,8 +45,9 @@ const authSlice = createSlice({
       state.error = null;
     },
     loginSuccess(state, action: PayloadAction<any>) { // You can specify the action type (e.g., User)
-      state.user = action.payload;
-      state.token = action.payload.token;
+      const { user } = action.payload;
+      state.user = user;
+      state.token = user.token;
       state.isAuthenticated = true;
       state.loading = false;
     },
