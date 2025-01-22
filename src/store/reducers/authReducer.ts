@@ -2,13 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkEmailExists } from '../actions/authAction';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// Define a User type if possible
-interface User {
-  id: number;
-  role: string;
-  token: string;
-}
-
 // Define the Auth state type
 interface AuthState {
   isAuthenticated: boolean;
