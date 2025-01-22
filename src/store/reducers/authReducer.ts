@@ -9,12 +9,6 @@ interface User {
   token: string;
 }
 
-// Payload type for login success
-interface LoginSuccessPayload {
-  message: string;
-  user: User;
-}
-
 // Define the Auth state type
 interface AuthState {
   isAuthenticated: boolean;
