@@ -23,7 +23,7 @@ const Phone: React.FC = () => {
           {/* Avatar */}
           <div className='flex justify-center lg:flex'>
             <Image
-              src="/images/user/Avatar.png" // Image path
+              src="/images/User/Avatar.png" // Image path
               alt="Avatar"
               width={32} // Avatar width
               height={32} // Avatar height
