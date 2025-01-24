@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 
          <MenuProfile 
           name="Sarah Benson" 
-          image="/images/user/Avatar.png" 
+          image="/images/User/Avatar.png" 
           role="Loan Officer"
         />
       </div>
