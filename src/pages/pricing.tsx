@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store/store';
 import { getStaffList } from '../store/actions/staffActions';
 import Sidebar from '../components/layout/Sidebar';
 import Navbar from '../components/layout/Navbar';
@@ -8,7 +8,6 @@ import {
   Switch,
   FormControlLabel,
   Select,
-  FormControl,
   InputLabel,
   MenuItem,
   SelectChangeEvent,
@@ -146,7 +145,7 @@ const Pricing: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [downloadTemplate, setDownloadTemplate] = useState('')
   const [activeTab, setActiveTab] = useState(0);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   useEffect(() => {
     dispatch(getStaffList());
