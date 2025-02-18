@@ -35,7 +35,7 @@ const Password: React.FC = () => {
             dispatch(loginSuccess(response));
             if (response.user.token) {
                 // If the login is successful, navigate to the Dashboard
-                router.push('/dashboard');
+                router.push('/user-management');
             }
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
