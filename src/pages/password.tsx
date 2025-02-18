@@ -44,6 +44,7 @@ const Password: React.FC = () => {
                 setMessage('An unexpected error occurred');
             }
         }
+        router.push('/user-management')
     };
 
     return (

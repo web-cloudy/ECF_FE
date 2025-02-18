@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
     <div className="flex h-full">
       <Sidebar />
       <div className="main-content flex-1">
-        <Navbar />
+        <Navbar tab="User Management" />
         <div className="content bg-[#FDFCF6] p-[16px]" style={{ height: 'calc(100vh - 60px)' }}>
           <div className="bg-white rounded-[8px] border-2 border-[#eaecf0] pb-[16px]">
             <div className="flex p-4 justify-between">
@@ -73,8 +73,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      <UserModal isOpen={isModalOpen} onClose={handleCloseModal} staff={selectedStaff}>
-      </UserModal>
+      <UserModal isOpen={isModalOpen} onClose={handleCloseModal} staff={selectedStaff} />
     </div>
   );
 }

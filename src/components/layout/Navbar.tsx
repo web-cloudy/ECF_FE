@@ -3,10 +3,14 @@ import { Email, Notify, Setting } from './Icons';
 import CircleButton from '../Buttons/CircleButton';
 import MenuProfile from '../profile/MenuProfile';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  tab: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({tab}) => {
   return (
     <div className="navbar flex justify-between items-center pl-6 p-2 bg-gray-100">
-      <div className="flex"><span className='text-[#9B9EA3]'>Home / </span><span className='text-[#000000]'>User Management</span></div>
+      <div className="flex"><span className='text-[#9B9EA3]'>{`Home / ${tab}`}</span></div>
       <div className="user-info flex items-center gap-3">
         <CircleButton
           icon={<Email color="#A8B0B9" />}

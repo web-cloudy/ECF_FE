@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import SidebarItem from './SidebarItem';
 import Phone from '../usermanagement/Phone';
 import Image from 'next/image';
@@ -8,47 +9,57 @@ import {
 
 
 const Sidebar: React.FC = () => {
+  const router = useRouter();
   const [activeButton, setActiveButton] = useState(-1);
   const siderbarItems = [
     {
       icon: <HomeIcon color="#A8B0B9" />,
       title: "Home",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/home',
     },
     {
       icon: <TaskIcon color="#A8B0B9" />,
       title: "Tasks",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/tasks',
     },
     {
       icon: <LeadIcon color="#A8B0B9" />,
       title: "Leads",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/leads',
     },
     {
       icon: <LoanIcon color="#A8B0B9" />,
       title: "Loan",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/loan',
     },
     {
       icon: <PricingIcon color="#A8B0B9" />,
       title: "Pricing",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/pricing'
     },
     {
       icon: <MarketingIcon color="#A8B0B9" />,
       title: "Marketing",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/marketing',
     },
     {
       icon: <ReportIcon color="#A8B0B9" />,
       title: "Reports",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/reports',
     },
     {
       icon: <UserIcon color="#A8B0B9" />,
       title: "User Management",
-      iconColor: "006838"
+      iconColor: "006838",
+      path: '/user-management',
+
     }
   ];
   return (
@@ -76,7 +87,11 @@ const Sidebar: React.FC = () => {
                   icon={item.icon}
                   title={item.title}
                   isActive={activeButton === index} // Pass active state
-                  onClick={() => setActiveButton(index)} // Handle click
+                  onClick={() => {
+                    setActiveButton(index);
+                    router.push(item.path)
+
+                  }} 
                 />
               ))
             }

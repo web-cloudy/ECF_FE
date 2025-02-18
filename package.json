@@ -10,12 +10,17 @@
     "export": "next export"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.4",
+    "@mui/x-date-pickers": "^7.27.0",
     "@reduxjs/toolkit": "^2.4.0",
     "axios": "^1.7.9",
     "lodash": "^4.17.21",
     "next": "15.0.3",
     "next-redux-wrapper": "^8.1.0",
     "react": "18.3.0",
+    "react-datepicker": "^8.1.0",
     "react-dom": "18.3.0",
     "react-redux": "^9.2.0"
   },
