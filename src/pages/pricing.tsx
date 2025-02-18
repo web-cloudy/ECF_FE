@@ -151,9 +151,16 @@ const Pricing: React.FC = () => {
     dispatch(getStaffList());
   }, [dispatch]);
 
-  const handleDownloadTemplate = (event: SelectChangeEvent<string>) => {
-    setDownloadTemplate(event.target.value)
-  }
+  const handleDownloadTemplate = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+    const newValue = event.target.value;
+  
+    // Check if the value is a string before setting the state
+    if (typeof newValue === 'string') {
+      setDownloadTemplate(newValue);
+    } else {
+      console.error("The selected value is not a string:", typeof newValue);
+    }
+  };
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
