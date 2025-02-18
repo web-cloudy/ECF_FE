@@ -151,7 +151,7 @@ const Pricing: React.FC = () => {
     dispatch(getStaffList());
   }, [dispatch]);
 
-  const handleDownloadTemplate = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+  const handleDownloadTemplate = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value;
   
     // Check if the value is a string before setting the state
