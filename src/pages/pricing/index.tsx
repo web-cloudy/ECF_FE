@@ -17,7 +17,17 @@ import {
   Tab,
   Typography,
   Grid2,
+  Card,
+  CardContent,
+  TextField,
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
 } from "@mui/material";
+import { RemoveCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -145,6 +155,7 @@ const Pricing: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [downloadTemplate, setDownloadTemplate] = useState("");
   const [activeTab, setActiveTab] = useState(0);
+  const [showAdvancedSection, setShowAdvancedSection] = useState(false);
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -212,7 +223,7 @@ const Pricing: React.FC = () => {
                   </Tabs>
                 </Box>
                 <CustomTabPanel value={activeTab} index={0}>
-                  <Typography variant="h5" mb={1}>
+                  <Typography variant="h5" fontWeight="bold" mb={1}>
                     Loan Structure
                   </Typography>
                   <Grid2 container spacing={5} mb={2}>
@@ -242,12 +253,15 @@ const Pricing: React.FC = () => {
                         <MenuItem value="">Choose</MenuItem>
                       </Select>
                       <InputLabel>Closing Date</InputLabel>
+                      <Select displayEmpty fullWidth>
+                        <MenuItem value="">Choose</MenuItem>
+                      </Select>
                       {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
                           <DatePicker label="Basic date picker" />
                         </DemoContainer>
                       </LocalizationProvider> */}
-                      <Button
+                      {!showAdvancedSection && <Button
                         sx={{
                           marginTop: 2,
                           borderRadius: 50,
@@ -256,9 +270,311 @@ const Pricing: React.FC = () => {
                           border: "1px solid green",
                         }}
                         fullWidth
+                        onClick={() => setShowAdvancedSection(true)}
                       >
                         Continue
-                      </Button>
+                      </Button>}
+                      {showAdvancedSection && <Box>
+                        <Box>
+                          <Typography variant="h5" fontWeight="bold">
+                            <RemoveCircleOutline sx={{ mr: 2, my: 2 }} />Property
+                          </Typography>
+                          <Card>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Property Information</Typography>
+                              <InputLabel>Address</InputLabel>
+                              <TextField fullWidth />
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <InputLabel>Zip Code</InputLabel>
+                                  <TextField />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <InputLabel>State</InputLabel>
+                                  <Select displayEmpty fullWidth>
+                                    <MenuItem value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="item-1">Item 1</MenuItem>
+                                    <MenuItem value="item-2">Item 2</MenuItem>
+                                    <MenuItem value="item-3">Item 3</MenuItem>
+                                    <MenuItem value="item-4">Item 4</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <InputLabel>City</InputLabel>
+                                  <TextField />
+                                </Grid2>
+                              </Grid2>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>Property Type</InputLabel>
+                                  <Select displayEmpty fullWidth>
+                                    <MenuItem value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="item-1">Item 1</MenuItem>
+                                    <MenuItem value="item-2">Item 2</MenuItem>
+                                    <MenuItem value="item-3">Item 3</MenuItem>
+                                    <MenuItem value="item-4">Item 4</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>% of Commercial Use</InputLabel>
+                                  <TextField fullWidth />
+                                </Grid2>
+                                <Grid2 container size={12} spacing={2} my={2}>
+                                  <Grid2 size={6}>
+                                    <InputLabel>Unit Count</InputLabel>
+                                    <Select displayEmpty fullWidth>
+                                      <MenuItem value="">
+                                        Choose
+                                      </MenuItem>
+                                      <MenuItem value="item-1">Item 1</MenuItem>
+                                      <MenuItem value="item-2">Item 2</MenuItem>
+                                      <MenuItem value="item-3">Item 3</MenuItem>
+                                      <MenuItem value="item-4">Item 4</MenuItem>
+                                    </Select>
+                                  </Grid2>
+                                  <Grid2 size={6}>
+                                    <InputLabel>Occupied Units</InputLabel>
+                                    <Select displayEmpty fullWidth>
+                                      <MenuItem value="">
+                                        Choose
+                                      </MenuItem>
+                                      <MenuItem value="item-1">Item 1</MenuItem>
+                                      <MenuItem value="item-2">Item 2</MenuItem>
+                                      <MenuItem value="item-3">Item 3</MenuItem>
+                                      <MenuItem value="item-4">Item 4</MenuItem>
+                                    </Select>
+                                  </Grid2>
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Construction Description</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                            </CardContent>
+                          </Card>
+                        </Box>
+                        <Box>
+                          <Typography variant="h5" fontWeight="bold">
+                            <RemoveCircleOutline sx={{ mr: 2, my: 2 }} />Loan
+                          </Typography>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Transaction Details</Typography>
+                              <InputLabel>Transaction Type</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>Exit Strategy</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>Cash Out</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                            </CardContent>
+                          </Card>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Property Financials</Typography>
+                              <InputLabel>Purchase Price</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>As Is Value</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Rehab Budget</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>ARV</InputLabel>
+                              <TextField fullWidth />
+                            </CardContent>
+                          </Card>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Rent Roll</Typography>
+                              <TableContainer>
+                                <Table>
+                                  <TableHead>
+                                    <TableRow>
+                                      <TableCell>Unit</TableCell>
+                                      <TableCell>Current Rent</TableCell>
+                                      <TableCell>Fair Market Rent</TableCell>
+                                    </TableRow>
+                                  </TableHead>
+                                  <TableBody>
+                                    <TableRow>
+                                      <TableCell>Unit 2</TableCell>
+                                      <TableCell>$0</TableCell>
+                                      <TableCell>$0</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell>Unit 3</TableCell>
+                                      <TableCell>$0</TableCell>
+                                      <TableCell>$0</TableCell>
+                                    </TableRow>
+                                  </TableBody>
+
+                                </Table>
+                              </TableContainer>
+                              <Grid2 container size={12} spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>Current Total</InputLabel>
+                                  <TextField fullWidth />
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>Fair Market Total</InputLabel>
+                                  <TextField fullWidth />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Annual Taxes</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Annual Property Insurance</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Annual HOA</InputLabel>
+                              <TextField fullWidth />
+                            </CardContent>
+                          </Card>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Refinance Additional Details</Typography>
+                              <InputLabel>Purchase Date</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>Cost of Completed Improvements</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Current Loan Balance</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Current Lender</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Current Rate</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Loan Maturity Date</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                            </CardContent>
+                          </Card>
+                        </Box>
+                        <Box>
+                          <Typography variant="h5" fontWeight="bold">
+                            <RemoveCircleOutline sx={{ mr: 2, my: 2 }} /> Borrower
+                          </Typography>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Borrower Information</Typography>
+                              <Grid2 container size={12} spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>First Name</InputLabel>
+                                  <TextField fullWidth />
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>Last Name</InputLabel>
+                                  <TextField fullWidth />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Credit Score (Median)</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>US Citizen?</InputLabel>
+                              <Grid2 container size={12} spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <Select displayEmpty fullWidth>
+                                    <MenuItem value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="item-1">Item 1</MenuItem>
+                                    <MenuItem value="item-2">Item 2</MenuItem>
+                                    <MenuItem value="item-3">Item 3</MenuItem>
+                                    <MenuItem value="item-4">Item 4</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <TextField fullWidth />
+                                </Grid2>
+                              </Grid2>
+                            </CardContent>
+                          </Card>
+                          <Card sx={{ my: 2 }}>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">Borrower History</Typography>
+                              <InputLabel>Current Rental Properties Owned</InputLabel>
+                              <TextField fullWidth />
+                              <InputLabel>Professional Licenses GC, RE, CPA etc</InputLabel>
+                              <Select displayEmpty fullWidth>
+                                <MenuItem value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>Largest 3 Completed Rehab Sizes (Ex, 368k,125)</InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Largest 3 Completed Projects(Purchase + Rehab Amount)</InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <TextField />
+                                </Grid2>
+                              </Grid2>
+                            </CardContent>
+                          </Card>
+                        </Box>
+                      </Box>}
                     </Grid2>
                     <Grid2 size={6}>
                       <InputLabel>
