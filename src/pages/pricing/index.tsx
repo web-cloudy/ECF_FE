@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../store/store';
-import { getStaffList } from '../store/actions/staffActions';
-import Sidebar from '../components/layout/Sidebar';
-import Navbar from '../components/layout/Navbar';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { getStaffList } from "../../store/actions/staffActions";
+import Sidebar from "../../components/layout/Sidebar";
+import Navbar from "../../components/layout/Navbar";
 import {
   Switch,
   FormControlLabel,
@@ -17,9 +17,9 @@ import {
   Tab,
   Typography,
   Grid2,
-} from '@mui/material';
-import { SwitchProps } from '@mui/material/Switch';
-import { styled } from '@mui/material/styles';
+} from "@mui/material";
+import { SwitchProps } from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -31,56 +31,56 @@ const IOSSwitch = styled((props: SwitchProps) => (
   width: 42,
   height: 26,
   padding: 0,
-  '& .MuiSwitch-switchBase': {
+  "& .MuiSwitch-switchBase": {
     padding: 0,
     margin: 2,
-    transitionDuration: '300ms',
-    '&.Mui-checked': {
-      transform: 'translateX(16px)',
-      color: '#fff',
-      '& + .MuiSwitch-track': {
-        backgroundColor: '#65C466',
+    transitionDuration: "300ms",
+    "&.Mui-checked": {
+      transform: "translateX(16px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
+        backgroundColor: "#65C466",
         opacity: 1,
         border: 0,
-        ...theme.applyStyles('dark', {
-          backgroundColor: '#2ECA45',
+        ...theme.applyStyles("dark", {
+          backgroundColor: "#2ECA45",
         }),
       },
-      '&.Mui-disabled + .MuiSwitch-track': {
+      "&.Mui-disabled + .MuiSwitch-track": {
         opacity: 0.5,
       },
     },
-    '&.Mui-focusVisible .MuiSwitch-thumb': {
-      color: '#33cf4d',
-      border: '6px solid #fff',
+    "&.Mui-focusVisible .MuiSwitch-thumb": {
+      color: "#33cf4d",
+      border: "6px solid #fff",
     },
-    '&.Mui-disabled .MuiSwitch-thumb': {
+    "&.Mui-disabled .MuiSwitch-thumb": {
       color: theme.palette.grey[100],
-      ...theme.applyStyles('dark', {
+      ...theme.applyStyles("dark", {
         color: theme.palette.grey[600],
       }),
     },
-    '&.Mui-disabled + .MuiSwitch-track': {
+    "&.Mui-disabled + .MuiSwitch-track": {
       opacity: 0.7,
-      ...theme.applyStyles('dark', {
+      ...theme.applyStyles("dark", {
         opacity: 0.3,
       }),
     },
   },
-  '& .MuiSwitch-thumb': {
-    boxSizing: 'border-box',
+  "& .MuiSwitch-thumb": {
+    boxSizing: "border-box",
     width: 22,
     height: 22,
   },
-  '& .MuiSwitch-track': {
+  "& .MuiSwitch-track": {
     borderRadius: 26 / 2,
-    backgroundColor: '#E9E9EA',
+    backgroundColor: "#E9E9EA",
     opacity: 1,
-    transition: theme.transitions.create(['background-color'], {
+    transition: theme.transitions.create(["background-color"], {
       duration: 500,
     }),
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#39393D',
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#39393D",
     }),
   },
 }));
@@ -103,21 +103,21 @@ const CustomSelect = styled(Select)`
     right; 8px;
     position: absolute;
   }
-`
+`;
 const CustomButton = styled(Button)`
   font-size: 12px;
   border-radius: 50px;
   border: 1px solid #ccc;
   color: black;
   font-weight: bold;
-`
+`;
 
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
-}
+};
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -143,7 +143,7 @@ function CustomTabPanel(props: TabPanelProps) {
 
 const Pricing: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [downloadTemplate, setDownloadTemplate] = useState('')
+  const [downloadTemplate, setDownloadTemplate] = useState("");
   const [activeTab, setActiveTab] = useState(0);
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -153,9 +153,9 @@ const Pricing: React.FC = () => {
 
   const handleDownloadTemplate = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value;
-  
+
     // Check if the value is a string before setting the state
-    if (typeof newValue === 'string') {
+    if (typeof newValue === "string") {
       setDownloadTemplate(newValue);
     } else {
       console.error("The selected value is not a string:", typeof newValue);
@@ -164,19 +164,28 @@ const Pricing: React.FC = () => {
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
-  }
+  };
 
   return (
     <div className="flex h-full">
-      <Sidebar  />
+      <Sidebar />
       <div className="main-content flex-1">
         <Navbar tab="Pricing" />
-        <div className="content bg-[#FDFCF6] p-[16px]" style={{ height: 'calc(100vh - 60px)' }}>
+        <div
+          className="content bg-[#FDFCF6] p-[16px]"
+          style={{ height: "calc(100vh - 60px)" }}
+        >
           <div className="bg-white rounded-[8px] border-2 border-[#eaecf0] pb-[16px]">
             <div className="flex p-4 justify-between items-center">
-              <h1 className="text-black text-[24px] leading-[36px] font-semibold">Pricing</h1>
+              <h1 className="text-black text-[24px] leading-[36px] font-semibold">
+                Pricing
+              </h1>
               <div className="flex gap-6">
-                <FormControlLabel control={<IOSSwitch />} label="Compact Pricing" labelPlacement="start" />
+                <FormControlLabel
+                  control={<IOSSwitch />}
+                  label="Compact Pricing"
+                  labelPlacement="start"
+                />
                 <CustomSelect
                   labelId="download-template-select-label"
                   id="download-template"
@@ -195,7 +204,7 @@ const Pricing: React.FC = () => {
             </div>
             <div className="px-4 pb-[16px]">
               <Box>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <Tabs value={activeTab} onChange={handleTabChange}>
                     <Tab label="Bridge" {...a11yProps(0)} />
                     <Tab label="Term" {...a11yProps(0)} />
@@ -203,12 +212,16 @@ const Pricing: React.FC = () => {
                   </Tabs>
                 </Box>
                 <CustomTabPanel value={activeTab} index={0}>
-                  <Typography variant='h5' mb={1}>Loan Structure</Typography>
+                  <Typography variant="h5" mb={1}>
+                    Loan Structure
+                  </Typography>
                   <Grid2 container spacing={5} mb={2}>
                     <Grid2 size={6}>
                       <InputLabel>Loan Program</InputLabel>
                       <Select displayEmpty fullWidth>
-                        <MenuItem value="">Residential Bridge (Ex. Fix & Flip/Fix & Hold)</MenuItem>
+                        <MenuItem value="">
+                          Residential Bridge (Ex. Fix & Flip/Fix & Hold)
+                        </MenuItem>
                         <MenuItem value="">Ground Up New Construction</MenuItem>
                         <MenuItem value="">Multifamily Bridge</MenuItem>
                         <MenuItem value="">Commercial Bridge</MenuItem>
@@ -216,8 +229,12 @@ const Pricing: React.FC = () => {
                       </Select>
                       <InputLabel>Loan Source</InputLabel>
                       <Select displayEmpty fullWidth>
-                        <MenuItem value="">Refinance - (Property Already Owned)</MenuItem>
-                        <MenuItem value="">5+ units Or Commercial Property</MenuItem>
+                        <MenuItem value="">
+                          Refinance - (Property Already Owned)
+                        </MenuItem>
+                        <MenuItem value="">
+                          5+ units Or Commercial Property
+                        </MenuItem>
                         <MenuItem value="">New Construction</MenuItem>
                       </Select>
                       <InputLabel>Property Type</InputLabel>
@@ -236,7 +253,7 @@ const Pricing: React.FC = () => {
                           borderRadius: 50,
                           fontSize: 16,
                           color: "green",
-                          border: "1px solid green"
+                          border: "1px solid green",
                         }}
                         fullWidth
                       >
@@ -244,7 +261,9 @@ const Pricing: React.FC = () => {
                       </Button>
                     </Grid2>
                     <Grid2 size={6}>
-                      <InputLabel>Has Customer Had Bankrupt in Past 4 Years?</InputLabel>
+                      <InputLabel>
+                        Has Customer Had Bankrupt in Past 4 Years?
+                      </InputLabel>
                       <Select fullWidth>
                         <MenuItem value="text">Text</MenuItem>
                         <MenuItem value="text">Text</MenuItem>
@@ -252,7 +271,9 @@ const Pricing: React.FC = () => {
                         <MenuItem value="text">Text</MenuItem>
                         <MenuItem value="text">Text</MenuItem>
                       </Select>
-                      <InputLabel>Has Customer Had Any Forclusers in Past 4 years? </InputLabel>
+                      <InputLabel>
+                        Has Customer Had Any Forclusers in Past 4 years?{" "}
+                      </InputLabel>
                       <Select fullWidth>
                         <MenuItem value="text">Text</MenuItem>
                         <MenuItem value="text">Text</MenuItem>
@@ -272,6 +293,6 @@ const Pricing: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Pricing;

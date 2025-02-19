@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
       icon: <PricingIcon color="#A8B0B9" />,
       title: "Pricing",
       iconColor: "006838",
-      path: '/pricing'
+      path: '/pricing/quotes'
     },
     {
       icon: <MarketingIcon color="#A8B0B9" />,
