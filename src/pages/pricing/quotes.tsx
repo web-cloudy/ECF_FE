@@ -8,12 +8,13 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
-import Link from "next/link";
-
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
+import { useRouter } from 'next/router';
 
 export default function Quotes() {
+  const router = useRouter();
+
   const [downloadTemplate, setDownloadTemplate] = useState("");
 
   const handleDownloadTemplate = (event: SelectChangeEvent<unknown>) => {
@@ -46,9 +47,7 @@ export default function Quotes() {
             <MenuItem value="template-1">Template-1</MenuItem>
             <MenuItem value="template-2">Template-2</MenuItem>
           </CustomSelect>
-          <Link href="/pricing">
-            <CustomButton fullWidth>Evaluate new loan</CustomButton>
-          </Link>
+          <CustomButton onClick={() => router.push('/pricing')} fullWidth>Evaluate new loan</CustomButton>
         </div>
       </div>
       <TableContainer component={Paper}>
