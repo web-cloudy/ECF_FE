@@ -10,7 +10,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 export default function Quotes() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function Quotes() {
   };
 
   return (
-    <div>
+    <div className="p-3 bg-gray-100">
       <div className="flex p-4 justify-between items-center">
         <h1 className="text-black text-[24px] leading-[36px] font-semibold">
           Quotes
@@ -47,7 +47,9 @@ export default function Quotes() {
             <MenuItem value="template-1">Template-1</MenuItem>
             <MenuItem value="template-2">Template-2</MenuItem>
           </CustomSelect>
-          <CustomButton onClick={() => router.push('/pricing')} fullWidth>Evaluate new loan</CustomButton>
+          <CustomButton onClick={() => router.push("/pricing")} fullWidth>
+            Evaluate new loan
+          </CustomButton>
         </div>
       </div>
       <TableContainer component={Paper}>
@@ -98,6 +100,7 @@ const CustomSelect = styled(Select)`
   font-size: 14px;
   background-color: white;
   box-shadow: none;
+  height: 40px;
   & .MuiSelect-select: {
     padding-right: 30px
   };
@@ -111,24 +114,30 @@ const CustomSelect = styled(Select)`
 `;
 
 const CustomButton = styled(Button)`
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   border-radius: 50px;
   border: 1px solid #ccc;
   color: white;
-  font-weight: bold;
-  background-color: green;
+  background-color: #009345;
+  height: 40px;
+  padding: 15px;
+  text-transform: none;
 `;
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "rgb(249, 248, 234)",
-    color: "rgb(202, 175, 111)",
+    backgroundColor: "#FAF8E9",
+    color: "#D2A645",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    "&:first-child": {
+      color: "#009345", // Change 'red' to your desired color
+    },
   },
+  fontSize: 16,
   borderWidth: 1,
-  borderColor: "#333333",
+  borderColor: "divider",
 }));
 
 Quotes.getLayout = (page: ReactNode) => {

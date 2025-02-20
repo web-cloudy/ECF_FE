@@ -91,9 +91,24 @@ export default function RightSidePanel() {
     <Grid2 size={6} className="px-4 pb-[16px]">
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs value={activeTab} onChange={handleTabChange}>
-            <Tab label="Pricing" {...a11yProps(0)} />
-            <Tab label="Log" {...a11yProps(0)} />
+          <Tabs
+            textColor="inherit"
+            value={activeTab}
+            onChange={handleTabChange}
+            sx={{
+              "& .MuiTabs-indicator": {
+                backgroundColor: "green", // Change 'green' to your desired color
+              },
+            }}
+          >
+            <Tab
+              label="Pricing"
+              {...a11yProps(0)}
+              sx={{
+                textTransform: "none",
+              }}
+            />
+            <Tab label="Log" {...a11yProps(0)} sx={{ textTransform: "none" }} />
             <Tab />
           </Tabs>
         </Box>

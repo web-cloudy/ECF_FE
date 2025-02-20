@@ -31,6 +31,7 @@ import { RemoveCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import RightSidePanel from "@/components/pricing/RightSidePanel";
+import { transform } from "next/dist/build/swc/generated-native";
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -117,12 +118,16 @@ const CustomSelect = styled(Select)`
   }
 `;
 const CustomButton = styled(Button)`
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   border-radius: 50px;
   border: 1px solid #ccc;
   color: black;
-  font-weight: bold;
   height: 40px;
+  text-transform: none;
+  white-space: nowrap;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const a11yProps = (index: number) => {
@@ -195,6 +200,7 @@ export default function Pricing() {
               control={<IOSSwitch />}
               label="Compact Pricing"
               labelPlacement="start"
+              className="whitespace-nowrap gap-2"
             />
             <CustomSelect
               labelId="download-template-select-label"
@@ -213,13 +219,29 @@ export default function Pricing() {
           </div>
         </div>
         <Grid2 container>
-          <Grid2 size={6} className="px-4 pb-[16px]">
+          <Grid2 size={showAdvancedSection ? 6 : 12} className="px-4 pb-[16px]">
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <Tabs value={activeTab} onChange={handleTabChange}>
-                  <Tab label="Bridge" {...a11yProps(0)} />
-                  <Tab label="Term" {...a11yProps(0)} />
-                  <Tab />
+                <Tabs
+                  textColor="inherit"
+                  value={activeTab}
+                  onChange={handleTabChange}
+                  sx={{
+                    "& .MuiTabs-indicator": {
+                      backgroundColor: "green", // Change 'green' to your desired color
+                    },
+                  }}
+                >
+                  <Tab
+                    label="Bridge"
+                    {...a11yProps(0)}
+                    sx={{ textTransform: "none" }}
+                  />
+                  <Tab
+                    label="Term"
+                    {...a11yProps(0)}
+                    sx={{ textTransform: "none" }}
+                  />
                 </Tabs>
               </Box>
               <CustomTabPanel value={activeTab} index={0}>
@@ -626,6 +648,44 @@ export default function Pricing() {
                               <TextField />
                             </Grid2>
                             <Grid2 size={4}>
+                              <TextField />
+                            </Grid2>
+                          </Grid2>
+                        </CardContent>
+                        <CardContent>
+                          <Typography variant="h6" fontWeight="bold">
+                            Liquidity
+                          </Typography>
+                          <InputLabel>Ground Up Deals Completed</InputLabel>
+                          <Select displayEmpty fullWidth>
+                            <MenuItem value="">Choose</MenuItem>
+                            <MenuItem value="item-1">Item 1</MenuItem>
+                            <MenuItem value="item-2">Item 2</MenuItem>
+                            <MenuItem value="item-3">Item 3</MenuItem>
+                            <MenuItem value="item-4">Item 4</MenuItem>
+                          </Select>
+                          <InputLabel>
+                            # Of Units For 3 Largest Ground Up Projects (Ex.
+                            45,12,3)
+                          </InputLabel>
+                          <Grid2 container spacing={2} my={2}>
+                            <Grid2 size={4}>
+                              <TextField />
+                            </Grid2>
+                            <Grid2 size={4}>
+                              <TextField />
+                            </Grid2>
+                            <Grid2 size={4}>
+                              <TextField />
+                            </Grid2>
+                          </Grid2>
+                          <Grid2 container spacing={2} my={2}>
+                            <Grid2 size={6}>
+                              <InputLabel>Ground Up Deals Completed</InputLabel>
+                              <TextField />
+                            </Grid2>
+                            <Grid2 size={6}>
+                              <InputLabel># Of Units For 3</InputLabel>
                               <TextField />
                             </Grid2>
                           </Grid2>
