@@ -31,7 +31,6 @@ import { RemoveCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import RightSidePanel from "@/components/pricing/RightSidePanel";
-import { transform } from "next/dist/build/swc/generated-native";
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
