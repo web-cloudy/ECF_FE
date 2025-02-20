@@ -49,9 +49,7 @@ function CustomTabPanel(props: TabPanelProps) {
 const CustomButton = styled(Button)`
   font-size: 12px;
   border-radius: 50px;
-  border: 1px solid #ccc;
-  color: black;
-  background-color: #009045;
+  color: white;
   font-weight: bold;
 `;
 
@@ -85,7 +83,7 @@ export default function RightSidePanel() {
   };
 
   return (
-    <Grid2 size={6} className="px-4 pb-[16px]">
+    <Grid2 size={6} className="bg-white rounded-xl">
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
@@ -114,7 +112,7 @@ export default function RightSidePanel() {
             <Typography variant="h5" mb={1}>
               Loan Structure
             </Typography>
-            <CustomButton variant="contained">Add Criteria</CustomButton>
+            <CustomButton variant="contained"> + Add Criteria</CustomButton>
           </div>
           <TableContainer component={Paper}>
             <Table>
