@@ -27,6 +27,10 @@ import {
   TableRow,
   TableCell,
   FormControl,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  InputAdornment,
 } from "@mui/material";
 import { RemoveCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
@@ -96,6 +100,20 @@ const IOSSwitch = styled((props: SwitchProps) => (
     }),
   },
 }));
+
+const CustomTextField = styled(TextField)`
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  & .MuiOutlinedInput-notchedOutline: {
+    border: none;
+  };
+  & .MuiSelect-select: {
+    padding: 10px 14px;
+  };
+  & .MuiInputBase-input::placeholder: {
+    color: #bdbdbd;
+  }
+`
 
 const CustomSelect = styled(Select)`
   border-radius: 50px;
@@ -254,32 +272,34 @@ export default function Pricing() {
                 <Grid2 container spacing={5} mb={2}>
                   <Grid2 size={6}>
                     <InputLabel>Loan Program</InputLabel>
-                    <Select displayEmpty fullWidth>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
                       <MenuItem value="">
                         Residential Bridge (Ex. Fix & Flip/Fix & Hold)
                       </MenuItem>
-                      <MenuItem value="">Ground Up New Construction</MenuItem>
-                      <MenuItem value="">Multifamily Bridge</MenuItem>
-                      <MenuItem value="">Commercial Bridge</MenuItem>
-                      <MenuItem value="">Portfolio</MenuItem>
+                      <MenuItem value="item-1">Ground Up New Construction</MenuItem>
+                      <MenuItem value="item-2">Multifamily Bridge</MenuItem>
+                      <MenuItem value="item-3">Commercial Bridge</MenuItem>
+                      <MenuItem value="item-4">Portfolio</MenuItem>
                     </Select>
                     <InputLabel>Loan Source</InputLabel>
-                    <Select displayEmpty fullWidth>
-                      <MenuItem value="">
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem value="item-1">
                         Refinance - (Property Already Owned)
                       </MenuItem>
-                      <MenuItem value="">
+                      <MenuItem value="item-2">
                         5+ units Or Commercial Property
                       </MenuItem>
-                      <MenuItem value="">New Construction</MenuItem>
+                      <MenuItem value="item-3">New Construction</MenuItem>
                     </Select>
                     <InputLabel>Property Type</InputLabel>
-                    <Select displayEmpty fullWidth>
-                      <MenuItem value="">Choose</MenuItem>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
                     </Select>
                     <InputLabel>Closing Date</InputLabel>
-                    <Select displayEmpty fullWidth>
-                      <MenuItem value="">Choose</MenuItem>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
                     </Select>
                     {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
@@ -309,8 +329,8 @@ export default function Pricing() {
                     <InputLabel>
                       Has Customer Had Bankrupt in Past 4 Years?
                     </InputLabel>
-                    <Select fullWidth>
-                      <MenuItem value="text">Text</MenuItem>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
@@ -319,8 +339,8 @@ export default function Pricing() {
                     <InputLabel>
                       Has Customer Had Any Forclusers in Past 4 years?{" "}
                     </InputLabel>
-                    <Select fullWidth>
-                      <MenuItem value="text">Text</MenuItem>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
@@ -344,46 +364,28 @@ export default function Pricing() {
                     <Typography>
                       Has Customer Had Bankrupt in Past 4 Years?
                     </Typography>
-                    <FormControl variant="filled" fullWidth>
-                      <InputLabel>Choose</InputLabel>
-                      <Select
-                        fullWidth
-                        sx={{
-                          borderRadius: 2,
-                          borderColor: "green",
-                          "& .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "green", // Change the outline color here
-                          },
-                          "&:hover .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "darkgreen", // Change the outline color on hover
-                          },
-                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "darkgreen", // Change the outline color on focus
-                          },
-                        }}
-                      >
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                      </Select>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                    </Select>
+                    <FormControl variant="outlined" fullWidth>
                     </FormControl>
                   </Box>
                   <Box>
                     <Typography>
                       Has Customer Had Any Forclusers in Past 4 years?{" "}
                     </Typography>
-                    <FormControl variant="filled" fullWidth>
-                      <InputLabel>Choose</InputLabel>
-                      <Select fullWidth sx={{ borderRadius: 2 }}>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="text">Text</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <Select value="" displayEmpty fullWidth>
+                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                      <MenuItem value="text">Text</MenuItem>
+                    </Select>
                   </Box>
                 </Box>
 
@@ -400,16 +402,16 @@ export default function Pricing() {
                             Property Information
                           </Typography>
                           <InputLabel>Address</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input Address" fullWidth />
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={4}>
                               <InputLabel>Zip Code</InputLabel>
-                              <TextField />
+                              <CustomTextField placeholder="Input" />
                             </Grid2>
                             <Grid2 size={4}>
                               <InputLabel>State</InputLabel>
-                              <Select displayEmpty fullWidth>
-                                <MenuItem value="">Choose</MenuItem>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">Choose</MenuItem>
                                 <MenuItem value="item-1">Item 1</MenuItem>
                                 <MenuItem value="item-2">Item 2</MenuItem>
                                 <MenuItem value="item-3">Item 3</MenuItem>
@@ -418,14 +420,14 @@ export default function Pricing() {
                             </Grid2>
                             <Grid2 size={4}>
                               <InputLabel>City</InputLabel>
-                              <TextField />
+                              <CustomTextField placeholder="Input" />
                             </Grid2>
                           </Grid2>
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={6}>
                               <InputLabel>Property Type</InputLabel>
-                              <Select displayEmpty fullWidth>
-                                <MenuItem value="">Choose</MenuItem>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">Choose</MenuItem>
                                 <MenuItem value="item-1">Item 1</MenuItem>
                                 <MenuItem value="item-2">Item 2</MenuItem>
                                 <MenuItem value="item-3">Item 3</MenuItem>
@@ -434,13 +436,13 @@ export default function Pricing() {
                             </Grid2>
                             <Grid2 size={6}>
                               <InputLabel>% of Commercial Use</InputLabel>
-                              <TextField fullWidth />
+                              <CustomTextField placeholder="Input" fullWidth />
                             </Grid2>
                             <Grid2 container size={12} spacing={2} my={2}>
                               <Grid2 size={6}>
                                 <InputLabel>Unit Count</InputLabel>
-                                <Select displayEmpty fullWidth>
-                                  <MenuItem value="">Choose</MenuItem>
+                                <Select value="" displayEmpty fullWidth>
+                                  <MenuItem disabled value="">Choose</MenuItem>
                                   <MenuItem value="item-1">Item 1</MenuItem>
                                   <MenuItem value="item-2">Item 2</MenuItem>
                                   <MenuItem value="item-3">Item 3</MenuItem>
@@ -449,8 +451,8 @@ export default function Pricing() {
                               </Grid2>
                               <Grid2 size={6}>
                                 <InputLabel>Occupied Units</InputLabel>
-                                <Select displayEmpty fullWidth>
-                                  <MenuItem value="">Choose</MenuItem>
+                                <Select value="" displayEmpty fullWidth>
+                                  <MenuItem disabled value="">Choose</MenuItem>
                                   <MenuItem value="item-1">Item 1</MenuItem>
                                   <MenuItem value="item-2">Item 2</MenuItem>
                                   <MenuItem value="item-3">Item 3</MenuItem>
@@ -460,8 +462,8 @@ export default function Pricing() {
                             </Grid2>
                           </Grid2>
                           <InputLabel>Construction Description</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
@@ -481,28 +483,25 @@ export default function Pricing() {
                             Transaction Details
                           </Typography>
                           <InputLabel>Transaction Type</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
                             <MenuItem value="item-4">Item 4</MenuItem>
                           </Select>
                           <InputLabel>Exit Strategy</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
                             <MenuItem value="item-4">Item 4</MenuItem>
                           </Select>
                           <InputLabel>Cash Out</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
+                          <Select value="yes" displayEmpty fullWidth>
+                            <MenuItem value="yes">Yes</MenuItem>
+                            <MenuItem value="no">No</MenuItem>
                           </Select>
                         </CardContent>
                       </Card>
@@ -512,13 +511,13 @@ export default function Pricing() {
                             Property Financials
                           </Typography>
                           <InputLabel>Purchase Price</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                           <InputLabel>As Is Value</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                           <InputLabel>Rehab Budget</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                           <InputLabel>ARV</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                         </CardContent>
                       </Card>
                       <Card sx={{ my: 2 }}>
@@ -552,19 +551,49 @@ export default function Pricing() {
                           <Grid2 container size={12} spacing={2} my={2}>
                             <Grid2 size={6}>
                               <InputLabel>Current Total</InputLabel>
-                              <TextField fullWidth />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                             <Grid2 size={6}>
                               <InputLabel>Fair Market Total</InputLabel>
-                              <TextField fullWidth />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                           </Grid2>
                           <InputLabel>Annual Taxes</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0"
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">$</InputAdornment>
+                            }}
+                          />
                           <InputLabel>Annual Property Insurance</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0"
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">$</InputAdornment>
+                            }}
+                          />
                           <InputLabel>Annual HOA</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0"
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">$</InputAdornment>
+                            }}
+                          />
                         </CardContent>
                       </Card>
                       <Card sx={{ my: 2 }}>
@@ -573,8 +602,8 @@ export default function Pricing() {
                             Refinance Additional Details
                           </Typography>
                           <InputLabel>Purchase Date</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
@@ -583,16 +612,34 @@ export default function Pricing() {
                           <InputLabel>
                             Cost of Completed Improvements
                           </InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0"
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">$</InputAdornment>
+                            }}
+                          />
                           <InputLabel>Current Loan Balance</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0"
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">$</InputAdornment>
+                            }}
+                          />
                           <InputLabel>Current Lender</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="Input"
+                          />
                           <InputLabel>Current Rate</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField
+                            fullWidth
+                            placeholder="0.0%"
+                          />
                           <InputLabel>Loan Maturity Date</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
@@ -613,28 +660,26 @@ export default function Pricing() {
                           <Grid2 container size={12} spacing={2} my={2}>
                             <Grid2 size={6}>
                               <InputLabel>First Name</InputLabel>
-                              <TextField fullWidth />
+                              <CustomTextField placeholder="Input" fullWidth />
                             </Grid2>
                             <Grid2 size={6}>
                               <InputLabel>Last Name</InputLabel>
-                              <TextField fullWidth />
+                              <CustomTextField placeholder="Input" fullWidth />
                             </Grid2>
                           </Grid2>
                           <InputLabel>Credit Score (Median)</InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                           <InputLabel>US Citizen?</InputLabel>
-                          <Grid2 container size={12} spacing={2} my={2}>
+                          <Grid2 container size={12} spacing={2} mb={2}>
                             <Grid2 size={6}>
-                              <Select displayEmpty fullWidth>
-                                <MenuItem value="">Choose</MenuItem>
-                                <MenuItem value="item-1">Item 1</MenuItem>
-                                <MenuItem value="item-2">Item 2</MenuItem>
-                                <MenuItem value="item-3">Item 3</MenuItem>
-                                <MenuItem value="item-4">Item 4</MenuItem>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">Choose</MenuItem>
+                                <MenuItem value="yes">Yes</MenuItem>
+                                <MenuItem value="no">No</MenuItem>
                               </Select>
                             </Grid2>
                             <Grid2 size={6}>
-                              <TextField fullWidth />
+                              <CustomTextField placeholder="Input" fullWidth />
                             </Grid2>
                           </Grid2>
                         </CardContent>
@@ -647,12 +692,12 @@ export default function Pricing() {
                           <InputLabel>
                             Current Rental Properties Owned
                           </InputLabel>
-                          <TextField fullWidth />
+                          <CustomTextField placeholder="Input" fullWidth />
                           <InputLabel>
                             Professional Licenses GC, RE, CPA etc
                           </InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
@@ -663,13 +708,31 @@ export default function Pricing() {
                           </InputLabel>
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                           </Grid2>
                           <InputLabel>
@@ -678,13 +741,31 @@ export default function Pricing() {
                           </InputLabel>
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
+                                }}
+                              />
                             </Grid2>
                           </Grid2>
                         </CardContent>
@@ -693,8 +774,8 @@ export default function Pricing() {
                             Liquidity
                           </Typography>
                           <InputLabel>Ground Up Deals Completed</InputLabel>
-                          <Select displayEmpty fullWidth>
-                            <MenuItem value="">Choose</MenuItem>
+                          <Select value="" displayEmpty fullWidth>
+                            <MenuItem disabled value="">Choose</MenuItem>
                             <MenuItem value="item-1">Item 1</MenuItem>
                             <MenuItem value="item-2">Item 2</MenuItem>
                             <MenuItem value="item-3">Item 3</MenuItem>
@@ -706,27 +787,45 @@ export default function Pricing() {
                           </InputLabel>
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField placeholder="0" />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField placeholder="0" />
                             </Grid2>
                             <Grid2 size={4}>
-                              <TextField />
+                              <CustomTextField placeholder="0" />
                             </Grid2>
                           </Grid2>
                           <Grid2 container spacing={2} my={2}>
                             <Grid2 size={6}>
                               <InputLabel>Ground Up Deals Completed</InputLabel>
-                              <TextField />
+                              <CustomTextField placeholder="Input" fullWidth />
                             </Grid2>
                             <Grid2 size={6}>
                               <InputLabel># Of Units For 3</InputLabel>
-                              <TextField />
+                              <CustomTextField placeholder="Input" fullWidth />
+                            </Grid2>
+                          </Grid2>
+                          <Typography variant="h6" fontWeight="bold">
+                            Commercial
+                          </Typography>
+                          <InputLabel>#If 5+ unit Or Commercial Properties Owned (Currently or flipped)</InputLabel>
+                          <CustomTextField placeholder="Input" fullWidth />
+                          <InputLabel>#Of Units For 3 Largest Completed Projects (Ex. 45,12,3)</InputLabel>
+                          <Grid2 container spacing={2} my={2}>
+                            <Grid2 size={4}>
+                              <CustomTextField placeholder="0" />
+                            </Grid2>
+                            <Grid2 size={4}>
+                              <CustomTextField placeholder="0" />
+                            </Grid2>
+                            <Grid2 size={4}>
+                              <CustomTextField placeholder="0" />
                             </Grid2>
                           </Grid2>
                         </CardContent>
                       </Card>
+                      <Button sx={{ borderRadius: 50, fontWeight: 600, padding: 2 }} color="success" fullWidth>Calculate</Button>
                     </Box>
                   </Box>
                 )}
