@@ -17,6 +17,7 @@ import {
   TableRow,
   TableBody,
   TableCell,
+  tableCellClasses,
 } from "@mui/material";
 
 const a11yProps = (index: number) => {
@@ -66,6 +67,18 @@ const rows = [
   ["Points", "0.95", "0.95", "0.95"],
   ["Fees", "0.95", "0.95", "0.95"],
 ];
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "rgb(249, 248, 234)",
+    color: "rgb(202, 175, 111)",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+  borderWidth: 1,
+  borderColor: "divider",
+}));
 
 export default function RightSidePanel() {
   const [activeTab, setActiveTab] = useState(0);
@@ -313,6 +326,7 @@ export default function RightSidePanel() {
               <Typography variant="body1">105.1</Typography>
             </Box>
           </Box>
+          {/* Levarages Adjustment */}
           <Box
             sx={{
               p: 2,
@@ -374,6 +388,56 @@ export default function RightSidePanel() {
               <Typography variant="body1">Median FICO</Typography>
               <Typography variant="body1">$30,000.00</Typography>
             </Box>
+          </Box>
+          {/* Proceeds */}
+          <Box
+            sx={{
+              border: 1,
+              borderColor: "divider",
+              padding: 2,
+              borderRadius: 3,
+              marginTop: 2,
+            }}
+          >
+            <Typography variant="h5">Proceeds</Typography>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Indicator</StyledTableCell>
+                    <StyledTableCell>Initial Proceeds</StyledTableCell>
+                    <StyledTableCell>Rehab Amount</StyledTableCell>
+                    <StyledTableCell>Total Max loan amount</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Max
+                    </StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                  </TableRow>
+                  <TableRow>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Adjusted Max
+                    </StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>40%</StyledTableCell>
+                    <StyledTableCell>60%</StyledTableCell>
+                  </TableRow>
+                  <TableRow>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Requested
+                    </StyledTableCell>
+                    <StyledTableCell>60%</StyledTableCell>
+                    <StyledTableCell></StyledTableCell>
+                    <StyledTableCell></StyledTableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Box>
         </CustomTabPanel>
       </Box>
