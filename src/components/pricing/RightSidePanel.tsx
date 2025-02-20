@@ -88,7 +88,7 @@ export default function RightSidePanel() {
   };
 
   return (
-    <div className="px-4 pb-[16px]">
+    <Grid2 size={6} className="px-4 pb-[16px]">
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={activeTab} onChange={handleTabChange}>
@@ -196,6 +196,7 @@ export default function RightSidePanel() {
               <Typography variant="h5">$80,000.00</Typography>
             </Grid2>
           </Grid2>
+          {/* Levarages */}
           <Box
             sx={{
               border: 1,
@@ -210,30 +211,36 @@ export default function RightSidePanel() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Indicator</TableCell>
-                    <TableCell>LTV (As is)</TableCell>
-                    <TableCell>Program 2</TableCell>
-                    <TableCell>Program 3</TableCell>
+                    <StyledTableCell>Indicator</StyledTableCell>
+                    <StyledTableCell>LTV (As is)</StyledTableCell>
+                    <StyledTableCell>Program 2</StyledTableCell>
+                    <StyledTableCell>Program 3</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell>Max</TableCell>
-                    <TableCell>70%</TableCell>
-                    <TableCell>70%</TableCell>
-                    <TableCell>70%</TableCell>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Max
+                    </StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Adjusted Max</TableCell>
-                    <TableCell>70%</TableCell>
-                    <TableCell>40%</TableCell>
-                    <TableCell>60%</TableCell>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Adjusted Max
+                    </StyledTableCell>
+                    <StyledTableCell>70%</StyledTableCell>
+                    <StyledTableCell>40%</StyledTableCell>
+                    <StyledTableCell>60%</StyledTableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Requested</TableCell>
-                    <TableCell>60%</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
+                    <StyledTableCell sx={{ color: "green" }}>
+                      Requested
+                    </StyledTableCell>
+                    <StyledTableCell>60%</StyledTableCell>
+                    <StyledTableCell></StyledTableCell>
+                    <StyledTableCell></StyledTableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -265,6 +272,7 @@ export default function RightSidePanel() {
               </Grid2>
             </Grid2>
           </Box>
+          {/* Final Price */}
           <Box
             sx={{
               p: 2,
@@ -441,6 +449,6 @@ export default function RightSidePanel() {
           </Box>
         </CustomTabPanel>
       </Box>
-    </div>
+    </Grid2>
   );
 }
