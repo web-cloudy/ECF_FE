@@ -5,9 +5,6 @@ import {
   Tab,
   Typography,
   Grid2,
-  InputLabel,
-  Select,
-  MenuItem,
   Button,
   styled,
   TableContainer,
@@ -68,7 +65,7 @@ const rows = [
   ["Fees", "0.95", "0.95", "0.95"],
 ];
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "rgb(249, 248, 234)",
     color: "rgb(202, 175, 111)",
