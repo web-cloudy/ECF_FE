@@ -26,6 +26,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  FormControl,
 } from "@mui/material";
 import { RemoveCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
@@ -186,10 +187,10 @@ export default function Pricing() {
 
   return (
     <div
-      className="content bg-[#FDFCF6] p-[16px]"
+      className="content bg-[#EEEEEE] p-[16px]"
       style={{ height: "calc(100vh - 60px)" }}
     >
-      <div className="bg-white rounded-[8px] border-2 border-[#eaecf0] pb-[16px]">
+      <div className="rounded-[8px] pb-[16px]">
         <div className="flex p-4 justify-between items-center">
           <h1 className="text-black text-[24px] leading-[36px] font-semibold">
             Pricing
@@ -217,8 +218,11 @@ export default function Pricing() {
             <CustomButton fullWidth>Export Term Sheet</CustomButton>
           </div>
         </div>
-        <Grid2 container>
-          <Grid2 size={showAdvancedSection ? 6 : 12} className="px-4 pb-[16px]">
+        <Grid2 container spacing={2}>
+          <Grid2
+            size={showAdvancedSection ? 6 : 12}
+            className="bg-white rounded-xl"
+          >
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
@@ -327,28 +331,61 @@ export default function Pricing() {
               </CustomTabPanel>
 
               <CustomTabPanel value={activeTab} index={1}>
-                <Grid2 size={6}>
-                  <InputLabel>
-                    Has Customer Had Bankrupt in Past 4 Years?
-                  </InputLabel>
-                  <Select fullWidth>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                  </Select>
-                  <InputLabel>
-                    Has Customer Had Any Forclusers in Past 4 years?{" "}
-                  </InputLabel>
-                  <Select fullWidth>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                    <MenuItem value="text">Text</MenuItem>
-                  </Select>
-                </Grid2>
+                <Box
+                  sx={{
+                    border: 1,
+                    borderColor: "divider",
+                    p: 2,
+                    borderRadius: 3,
+                  }}
+                  className="space-y-4"
+                >
+                  <Box>
+                    <Typography>
+                      Has Customer Had Bankrupt in Past 4 Years?
+                    </Typography>
+                    <FormControl variant="filled" fullWidth>
+                      <InputLabel>Choose</InputLabel>
+                      <Select
+                        fullWidth
+                        sx={{
+                          borderRadius: 2,
+                          borderColor: "green",
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "green", // Change the outline color here
+                          },
+                          "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "darkgreen", // Change the outline color on hover
+                          },
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "darkgreen", // Change the outline color on focus
+                          },
+                        }}
+                      >
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                  <Box>
+                    <Typography>
+                      Has Customer Had Any Forclusers in Past 4 years?{" "}
+                    </Typography>
+                    <FormControl variant="filled" fullWidth>
+                      <InputLabel>Choose</InputLabel>
+                      <Select fullWidth sx={{ borderRadius: 2 }}>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                        <MenuItem value="text">Text</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Box>
 
                 {showAdvancedSection && (
                   <Box>

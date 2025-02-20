@@ -85,7 +85,7 @@ export default function RightSidePanel() {
   };
 
   return (
-    <Grid2 size={6} className="px-4 pb-[16px]">
+    <Grid2 size={6} className="bg-white rounded-xl">
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
