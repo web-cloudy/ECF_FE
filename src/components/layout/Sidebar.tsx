@@ -19,6 +19,8 @@ import {
 const Sidebar: React.FC = () => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(-1);
+  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
+
   const siderbarItems = [
     {
       icon: <HomeIcon color="#A8B0B9" />,
@@ -48,7 +50,16 @@ const Sidebar: React.FC = () => {
       icon: <PricingIcon color="#A8B0B9" />,
       title: "Pricing",
       iconColor: "006838",
-      path: "/pricing/quotes",
+      children: [
+        {
+          title: "Quotes",
+          path: "/pricing/quotes",
+        },
+        {
+          title: "Guidlines",
+          path: "/pricing/guidlines",
+        },
+      ],
     },
     {
       icon: <MarketingIcon color="#A8B0B9" />,
@@ -69,6 +80,11 @@ const Sidebar: React.FC = () => {
       path: "/user-management",
     },
   ];
+
+  const handleSubmenuToggle = (index: number) => {
+    setActiveSubmenu(activeSubmenu === index ? null : index);
+  };
+
   return (
     <div className="sidebar h-screen border-r-2 border-[#eaecf0] flex flex-col justify-between">
       {/* Top Section */}
@@ -88,16 +104,33 @@ const Sidebar: React.FC = () => {
         <nav>
           <ul className="flex flex-col space-y-2">
             {siderbarItems.map((item, index) => (
-              <SidebarItem
-                key={index} // Use a unique identifier here
-                icon={item.icon}
-                title={item.title}
-                isActive={activeButton === index} // Pass active state
-                onClick={() => {
-                  setActiveButton(index);
-                  router.push(item.path);
-                }}
-              />
+              <div key={index}>
+                <SidebarItem
+                  icon={item.icon}
+                  title={item.title}
+                  isActive={activeButton === index}
+                  onClick={() => {
+                    setActiveButton(index);
+                    if (item.children) {
+                      handleSubmenuToggle(index);
+                    } else {
+                      router.push(item.path);
+                    }
+                  }}
+                />
+                {/* Render Submenu */}
+                {item.children && activeSubmenu === index && (
+                  <div className="pl-8 mt-2 space-y-1">
+                    {item.children.map((child, childIndex) => (
+                      <SidebarItem
+                        key={childIndex}
+                        title={child.title}
+                        onClick={() => router.push(child.path)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </ul>
         </nav>
