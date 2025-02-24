@@ -131,7 +131,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: "#D2A645",
   },
   [`&.${tableCellClasses.body}`]: {
-    "&:first-child": {
+    "&:first-of-type": {
       color: "#009345", // Change 'red' to your desired color
     },
   },

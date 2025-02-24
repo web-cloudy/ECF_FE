@@ -15,7 +15,9 @@ import {
   TableBody,
   TableCell,
   tableCellClasses,
+  Modal,
 } from "@mui/material";
+import Guidlines from "@/pages/pricing/guidlines";
 
 const a11yProps = (index: number) => {
   return {
@@ -75,12 +77,31 @@ const StyledTableCell = styled(TableCell)(() => ({
   borderColor: "divider",
 }));
 
+const modalStyle = {
+  position: "absolute",
+  top: "20%",
+  left: "20%",
+  transform: "translate(-10%, -10%)",
+  width: "80%",
+  height: "80%",
+  bgcolor: "background.paper",
+  // border: "2px solid #000",
+  boxShadow: 24,
+  borderRadius: 4,
+  p: 4,
+  overflow: "auto",
+};
+
 export default function RightSidePanel() {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Grid2 size={6} className="bg-white rounded-xl">
@@ -112,7 +133,19 @@ export default function RightSidePanel() {
             <Typography variant="h5" mb={1}>
               Loan Structure
             </Typography>
-            <CustomButton variant="contained"> + Add Criteria</CustomButton>
+            <CustomButton variant="contained" onClick={handleOpen}>
+              View Criteria
+            </CustomButton>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={modalStyle}>
+                <Guidlines />
+              </Box>
+            </Modal>
           </div>
           <TableContainer component={Paper}>
             <Table>
