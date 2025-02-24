@@ -6,10 +6,9 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
-import PropertyRequirments from "@/components/pricing/PropertyRequirments";
-import Leverage from "@/components/pricing/Leverage";
+import PropertyRequirmentsModal from "./PropertyRequirmentsModal";
 
-export default function Guidlines() {
+export default function GuidlinesModal() {
   const [value, setValue] = useState("1");
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
@@ -19,7 +18,7 @@ export default function Guidlines() {
   return (
     <div>
       <div>
-        <h1 className="text-black text-[24px] leading-[36px] font-semibold py-4 px-8">
+        <h1 className="text-black text-[24px] leading-[36px] font-semibold">
           Guidlines
         </h1>
         <Box sx={{ width: "100%", typography: "body1" }}>
@@ -36,11 +35,9 @@ export default function Guidlines() {
               </TabList>
             </Box>
             <TabPanel value="1">
-              <PropertyRequirments />
+              <PropertyRequirmentsModal />
             </TabPanel>
-            <TabPanel value="2">
-              <Leverage />
-            </TabPanel>
+            <TabPanel value="2">This is Leverage/Credit table.</TabPanel>
             <TabPanel value="3">This is Loan Requirments table.</TabPanel>
             <TabPanel value="4">This is Borrower Requirments table.</TabPanel>
           </TabContext>
@@ -50,7 +47,7 @@ export default function Guidlines() {
   );
 }
 
-Guidlines.getLayout = (page: ReactNode) => {
+GuidlinesModal.getLayout = (page: ReactNode) => {
   return (
     <div className="flex">
       <Sidebar />
