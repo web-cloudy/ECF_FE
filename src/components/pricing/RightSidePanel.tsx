@@ -17,7 +17,7 @@ import {
   tableCellClasses,
   Modal,
 } from "@mui/material";
-import PropertyRequirments from "./PropertyRequirments";
+import Guidlines from "@/pages/pricing/guidlines";
 
 const a11yProps = (index: number) => {
   return {
@@ -143,7 +143,7 @@ export default function RightSidePanel() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={modalStyle}>
-                <PropertyRequirments />
+                <Guidlines />
               </Box>
             </Modal>
           </div>
