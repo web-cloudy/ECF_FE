@@ -21,40 +21,40 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 
-const seasoningCategories = [
-  { label: "Cash Out", value: "6 Months" },
-  { label: "Rate and Term", value: "3 Months" },
+const pitiEscrowData = [
+  { label: "Purchase", value: "0" },
+  { label: "Refinance", value: "0" },
 ];
 
-const Seasoning = () => {
-  const [seasoningRows, setSeasoningRows] = useState(seasoningCategories);
-  const [editSeasoningMode, setEditSeasoningMode] = useState(false);
-  const [editedSeasoningRows, setEditedSeasoningRows] = useState([
-    ...seasoningCategories,
+const PITIEscrow = () => {
+  const [pitiEscrowRows, setPITIEscrowRows] = useState(pitiEscrowData);
+  const [editPITIEscrowMode, setEditPITIEscrowMode] = useState(false);
+  const [editedPITIEscrowRows, setEditedPITIEscrowRows] = useState([
+    ...pitiEscrowData,
   ]);
   const [expanded, setExpanded] = useState(false);
 
-  const handleSeasoningEditClick = (event: React.MouseEvent) => {
-    setEditSeasoningMode(!editSeasoningMode);
+  const handlePITIEscrowEditClick = (event: React.MouseEvent) => {
+    setEditPITIEscrowMode(!editPITIEscrowMode);
     event.stopPropagation();
     setExpanded(true);
   };
 
-  const handleSeasoningChange = (index: number, value: string) => {
-    const newRows = [...editedSeasoningRows];
+  const handlePITIEscrowChange = (index: number, value: string) => {
+    const newRows = [...editedPITIEscrowRows];
     newRows[index].value = value;
-    setEditedSeasoningRows(newRows);
+    setEditedPITIEscrowRows(newRows);
   };
 
-  const handleSeasoningSave = (event: React.MouseEvent) => {
-    setSeasoningRows([...editedSeasoningRows]);
-    setEditSeasoningMode(false);
+  const handlePITIEscrowSave = (event: React.MouseEvent) => {
+    setPITIEscrowRows([...editedPITIEscrowRows]);
+    setEditPITIEscrowMode(false);
     event.stopPropagation();
   };
 
   return (
     <Accordion
-      key="Seasoning"
+      key="PITIEscrow"
       sx={{ "&.Mui-expanded": { margin: 0 } }}
       expanded={expanded}
       onChange={() => setExpanded(!expanded)}
@@ -64,31 +64,33 @@ const Seasoning = () => {
         sx={{ flexDirection: "row-reverse" }}
       >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
-          <strong>Seasoning Requirements</strong>
+          <strong>PITI Escrow</strong>
         </Typography>
         <IconButton
           sx={{ marginLeft: "auto" }}
           onClick={
-            editSeasoningMode ? handleSeasoningSave : handleSeasoningEditClick
+            editPITIEscrowMode
+              ? handlePITIEscrowSave
+              : handlePITIEscrowEditClick
           }
         >
-          {editSeasoningMode ? <CheckIcon /> : <EditIcon />}
+          {editPITIEscrowMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>
-              {seasoningRows.map((row, index) => (
+              {pitiEscrowRows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell sx={{ width: "25%" }}>{row.label}</TableCell>
                   <TableCell>
-                    {editSeasoningMode ? (
+                    {editPITIEscrowMode ? (
                       <TextField
                         fullWidth
-                        value={editedSeasoningRows[index].value}
+                        value={editedPITIEscrowRows[index].value}
                         onChange={(e) =>
-                          handleSeasoningChange(index, e.target.value)
+                          handlePITIEscrowChange(index, e.target.value)
                         }
                       />
                     ) : (
@@ -105,4 +107,4 @@ const Seasoning = () => {
   );
 };
 
-export default Seasoning;
+export default PITIEscrow;

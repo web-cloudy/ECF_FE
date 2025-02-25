@@ -21,40 +21,41 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 
-const seasoningCategories = [
-  { label: "Cash Out", value: "6 Months" },
-  { label: "Rate and Term", value: "3 Months" },
+const loanTermsData = [
+  { label: "30 Year Fixed", value: "" },
+  { label: "10/1 ARM", value: "" },
+  { label: "5/1 ARM", value: "" },
 ];
 
-const Seasoning = () => {
-  const [seasoningRows, setSeasoningRows] = useState(seasoningCategories);
-  const [editSeasoningMode, setEditSeasoningMode] = useState(false);
-  const [editedSeasoningRows, setEditedSeasoningRows] = useState([
-    ...seasoningCategories,
+const LoanTerms = () => {
+  const [loanTermsRows, setLoanTermsRows] = useState(loanTermsData);
+  const [editLoanTermsMode, setEditLoanTermsMode] = useState(false);
+  const [editedLoanTermsRows, setEditedLoanTermsRows] = useState([
+    ...loanTermsData,
   ]);
   const [expanded, setExpanded] = useState(false);
 
-  const handleSeasoningEditClick = (event: React.MouseEvent) => {
-    setEditSeasoningMode(!editSeasoningMode);
+  const handleLoanTermsEditClick = (event: React.MouseEvent) => {
+    setEditLoanTermsMode(!editLoanTermsMode);
     event.stopPropagation();
     setExpanded(true);
   };
 
-  const handleSeasoningChange = (index: number, value: string) => {
-    const newRows = [...editedSeasoningRows];
+  const handleLoanTermsChange = (index: number, value: string) => {
+    const newRows = [...editedLoanTermsRows];
     newRows[index].value = value;
-    setEditedSeasoningRows(newRows);
+    setEditedLoanTermsRows(newRows);
   };
 
-  const handleSeasoningSave = (event: React.MouseEvent) => {
-    setSeasoningRows([...editedSeasoningRows]);
-    setEditSeasoningMode(false);
+  const handleLoanTermsSave = (event: React.MouseEvent) => {
+    setLoanTermsRows([...editedLoanTermsRows]);
+    setEditLoanTermsMode(false);
     event.stopPropagation();
   };
 
   return (
     <Accordion
-      key="Seasoning"
+      key="LoanTerms"
       sx={{ "&.Mui-expanded": { margin: 0 } }}
       expanded={expanded}
       onChange={() => setExpanded(!expanded)}
@@ -64,31 +65,34 @@ const Seasoning = () => {
         sx={{ flexDirection: "row-reverse" }}
       >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
-          <strong>Seasoning Requirements</strong>
+          <strong>Loan Terms Available</strong>
         </Typography>
         <IconButton
           sx={{ marginLeft: "auto" }}
           onClick={
-            editSeasoningMode ? handleSeasoningSave : handleSeasoningEditClick
+            editLoanTermsMode ? handleLoanTermsSave : handleLoanTermsEditClick
           }
         >
-          {editSeasoningMode ? <CheckIcon /> : <EditIcon />}
+          {editLoanTermsMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>
-              {seasoningRows.map((row, index) => (
+              {loanTermsRows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell sx={{ width: "25%" }}>{row.label}</TableCell>
+                  <TableCell sx={{ width: "5%" }}>
+                    <Checkbox sx={{ padding: 0 }} />
+                  </TableCell>
                   <TableCell>
-                    {editSeasoningMode ? (
+                    {editLoanTermsMode ? (
                       <TextField
                         fullWidth
-                        value={editedSeasoningRows[index].value}
+                        value={editedLoanTermsRows[index].value}
                         onChange={(e) =>
-                          handleSeasoningChange(index, e.target.value)
+                          handleLoanTermsChange(index, e.target.value)
                         }
                       />
                     ) : (
@@ -105,4 +109,4 @@ const Seasoning = () => {
   );
 };
 
-export default Seasoning;
+export default LoanTerms;

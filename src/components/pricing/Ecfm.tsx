@@ -42,9 +42,12 @@ const Ecfm = () => {
       maxVacantUnits: "",
     }))
   );
+  const [expanded, setExpanded] = useState(true);
 
-  const handleEcfmEditClick = () => {
+  const handleEcfmEditClick = (event: React.MouseEvent) => {
     setEditEcfmMode(!editEcfmMode);
+    event.stopPropagation();
+    setExpanded(true);
   };
 
   const handleEcfmChange = (index: number, field: string, value: string) => {
@@ -54,7 +57,12 @@ const Ecfm = () => {
   };
 
   return (
-    <Accordion key="ECFM" defaultExpanded>
+    <Accordion
+      key="ECFM"
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{ flexDirection: "row-reverse" }}
@@ -62,18 +70,16 @@ const Ecfm = () => {
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>ECFM</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton onClick={handleEcfmEditClick}>
-            {editEcfmMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton sx={{ marginLeft: "auto" }} onClick={handleEcfmEditClick}>
+          {editEcfmMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell></TableCell>
+                <TableCell sx={{ width: "25%" }}></TableCell>
                 <TableCell></TableCell>
                 {[
                   "Min DSCR",
@@ -93,7 +99,7 @@ const Ecfm = () => {
                 <TableRow key={index}>
                   <TableCell>{item}</TableCell>
                   <TableCell>
-                    <Checkbox />
+                    <Checkbox sx={{ padding: 0 }} />
                   </TableCell>
                   {[
                     "minDSCR",

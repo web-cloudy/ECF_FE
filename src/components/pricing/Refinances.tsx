@@ -31,9 +31,12 @@ const Refinances = () => {
   const [rows, setRows] = useState(refinancesData);
   const [editMode, setEditMode] = useState(false);
   const [editedRows, setEditedRows] = useState([...refinancesData]);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleEditClick = () => {
+  const handleEditClick = (event: React.MouseEvent) => {
     setEditMode(!editMode);
+    event.stopPropagation();
+    setExpanded(true);
     if (editMode) {
       setRows([...editedRows]);
     }
@@ -46,18 +49,24 @@ const Refinances = () => {
   };
 
   return (
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion
+      key="Refinances"
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{ flexDirection: "row-reverse" }}
+      >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>Cash Out Refinances</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton onClick={handleEditClick}>
-            {editMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton sx={{ marginLeft: "auto" }} onClick={handleEditClick}>
+          {editMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer component={Paper}>
           <Table>
             <TableBody>
@@ -66,14 +75,6 @@ const Refinances = () => {
                   {row.map((cell, colIndex) => (
                     <TableCell
                       key={colIndex}
-                      //   sx={{
-                      //     backgroundColor:
-                      //       colIndex === 1
-                      //         ? "#dff2d8"
-                      //         : colIndex === 2
-                      //         ? "#f0f8ff"
-                      //         : "inherit",
-                      //   }}
                       sx={{
                         width:
                           colIndex === 0

@@ -32,9 +32,12 @@ const PurchaseRateTerm = () => {
   const [rows, setRows] = useState(purchaseData);
   const [editMode, setEditMode] = useState(false);
   const [editedRows, setEditedRows] = useState([...purchaseData]);
+  const [expanded, setExpanded] = useState(true);
 
-  const handleEditClick = () => {
+  const handleEditClick = (event: React.MouseEvent) => {
     setEditMode(!editMode);
+    event.stopPropagation();
+    setExpanded(true);
     if (editMode) {
       setRows([...editedRows]);
     }
@@ -47,18 +50,25 @@ const PurchaseRateTerm = () => {
   };
 
   return (
-    <Accordion defaultExpanded>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion
+      key="Purchase"
+      // defaultExpanded
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{ flexDirection: "row-reverse" }}
+      >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>Purchase/Rate and Term</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton onClick={handleEditClick}>
-            {editMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton sx={{ marginLeft: "auto" }} onClick={handleEditClick}>
+          {editMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>

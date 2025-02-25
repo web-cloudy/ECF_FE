@@ -34,9 +34,12 @@ const Title = () => {
   const [titleRows, setTitleRows] = useState(titleCategories);
   const [editTitleMode, setEditTitleMode] = useState(false);
   const [editedTitleRows, setEditedTitleRows] = useState([...titleCategories]);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleTitleEditClick = () => {
+  const handleTitleEditClick = (event: React.MouseEvent) => {
     setEditTitleMode(!editTitleMode);
+    event.stopPropagation();
+    setExpanded(true);
   };
 
   const handleTitleChange = (index: number, value: string) => {
@@ -45,13 +48,19 @@ const Title = () => {
     setEditedTitleRows(newRows);
   };
 
-  const handleTitleSave = () => {
+  const handleTitleSave = (event: React.MouseEvent) => {
     setTitleRows([...editedTitleRows]);
     setEditTitleMode(false);
+    event.stopPropagation();
   };
 
   return (
-    <Accordion key="Title">
+    <Accordion
+      key="Title"
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{ flexDirection: "row-reverse" }}
@@ -59,15 +68,14 @@ const Title = () => {
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>Title</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton
-            onClick={editTitleMode ? handleTitleSave : handleTitleEditClick}
-          >
-            {editTitleMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton
+          sx={{ marginLeft: "auto" }}
+          onClick={editTitleMode ? handleTitleSave : handleTitleEditClick}
+        >
+          {editTitleMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>

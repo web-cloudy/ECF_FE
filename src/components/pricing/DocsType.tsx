@@ -21,40 +21,43 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 
-const seasoningCategories = [
-  { label: "Cash Out", value: "6 Months" },
-  { label: "Rate and Term", value: "3 Months" },
+const docsTypeData = [
+  { label: "DOC TYPE FULL", value: "" },
+  { label: "DOC TYPE LITE", value: "" },
+  { label: "NO DOC", value: "" },
+  { label: "12 Months Bank Statments", value: "" },
+  { label: "2 Years Tax Returns", value: "" },
 ];
 
-const Seasoning = () => {
-  const [seasoningRows, setSeasoningRows] = useState(seasoningCategories);
-  const [editSeasoningMode, setEditSeasoningMode] = useState(false);
-  const [editedSeasoningRows, setEditedSeasoningRows] = useState([
-    ...seasoningCategories,
+const DocsType = () => {
+  const [docsTypesRows, setDocsTypesRows] = useState(docsTypeData);
+  const [editDocsTypesMode, setEditDocsTypesMode] = useState(false);
+  const [editedDocsTypesRows, setEditedDocsTypesRows] = useState([
+    ...docsTypeData,
   ]);
   const [expanded, setExpanded] = useState(false);
 
-  const handleSeasoningEditClick = (event: React.MouseEvent) => {
-    setEditSeasoningMode(!editSeasoningMode);
+  const handleDocsTypesEditClick = (event: React.MouseEvent) => {
+    setEditDocsTypesMode(!editDocsTypesMode);
     event.stopPropagation();
     setExpanded(true);
   };
 
-  const handleSeasoningChange = (index: number, value: string) => {
-    const newRows = [...editedSeasoningRows];
+  const handleDocsTypesChange = (index: number, value: string) => {
+    const newRows = [...editedDocsTypesRows];
     newRows[index].value = value;
-    setEditedSeasoningRows(newRows);
+    setEditedDocsTypesRows(newRows);
   };
 
-  const handleSeasoningSave = (event: React.MouseEvent) => {
-    setSeasoningRows([...editedSeasoningRows]);
-    setEditSeasoningMode(false);
+  const handleDocsTypesSave = (event: React.MouseEvent) => {
+    setDocsTypesRows([...editedDocsTypesRows]);
+    setEditDocsTypesMode(false);
     event.stopPropagation();
   };
 
   return (
     <Accordion
-      key="Seasoning"
+      key="DocsTypes"
       sx={{ "&.Mui-expanded": { margin: 0 } }}
       expanded={expanded}
       onChange={() => setExpanded(!expanded)}
@@ -64,31 +67,34 @@ const Seasoning = () => {
         sx={{ flexDirection: "row-reverse" }}
       >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
-          <strong>Seasoning Requirements</strong>
+          <strong>Docs Types</strong>
         </Typography>
         <IconButton
           sx={{ marginLeft: "auto" }}
           onClick={
-            editSeasoningMode ? handleSeasoningSave : handleSeasoningEditClick
+            editDocsTypesMode ? handleDocsTypesSave : handleDocsTypesEditClick
           }
         >
-          {editSeasoningMode ? <CheckIcon /> : <EditIcon />}
+          {editDocsTypesMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>
-              {seasoningRows.map((row, index) => (
+              {docsTypesRows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell sx={{ width: "25%" }}>{row.label}</TableCell>
+                  <TableCell sx={{ width: "5%" }}>
+                    <Checkbox sx={{ padding: 0 }} />
+                  </TableCell>
                   <TableCell>
-                    {editSeasoningMode ? (
+                    {editDocsTypesMode ? (
                       <TextField
                         fullWidth
-                        value={editedSeasoningRows[index].value}
+                        value={editedDocsTypesRows[index].value}
                         onChange={(e) =>
-                          handleSeasoningChange(index, e.target.value)
+                          handleDocsTypesChange(index, e.target.value)
                         }
                       />
                     ) : (
@@ -105,4 +111,4 @@ const Seasoning = () => {
   );
 };
 
-export default Seasoning;
+export default DocsType;

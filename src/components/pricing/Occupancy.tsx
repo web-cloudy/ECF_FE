@@ -32,9 +32,12 @@ const Occupancy = () => {
   const [editedOccupancyRows, setEditedOccupancyRows] = useState([
     ...occupancyCategories,
   ]);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleOccupancyEditClick = () => {
+  const handleOccupancyEditClick = (event: React.MouseEvent) => {
     setEditOccupancyMode(!editOccupancyMode);
+    event.stopPropagation();
+    setExpanded(true);
   };
 
   const handleOccupancyChange = (index: number, value: string) => {
@@ -43,13 +46,19 @@ const Occupancy = () => {
     setEditedOccupancyRows(newRows);
   };
 
-  const handleOccupancySave = () => {
+  const handleOccupancySave = (event: React.MouseEvent) => {
     setOccupancyRows([...editedOccupancyRows]);
     setEditOccupancyMode(false);
+    event.stopPropagation();
   };
 
   return (
-    <Accordion key="Occupancy">
+    <Accordion
+      key="Occupancy"
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{ flexDirection: "row-reverse" }}
@@ -57,24 +66,23 @@ const Occupancy = () => {
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>Occupancy</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton
-            onClick={
-              editOccupancyMode ? handleOccupancySave : handleOccupancyEditClick
-            }
-          >
-            {editOccupancyMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton
+          sx={{ marginLeft: "auto" }}
+          onClick={
+            editOccupancyMode ? handleOccupancySave : handleOccupancyEditClick
+          }
+        >
+          {editOccupancyMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>
               {occupancyRows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell sx={{ width: "25%" }}>{row.label}</TableCell>
-                  <TableCell sx={{ width: "75%" }}>
+                  <TableCell>
                     {editOccupancyMode ? (
                       <TextField
                         fullWidth

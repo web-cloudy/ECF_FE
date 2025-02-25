@@ -36,7 +36,7 @@ const Leverage = () => {
               sx={{
                 backgroundColor: "#c99a3d",
                 color: "white",
-                padding: 4,
+                padding: 2,
                 width: "25%",
                 borderRight: "1px solid white",
                 fontSize: "1rem",
@@ -49,7 +49,7 @@ const Leverage = () => {
               sx={{
                 backgroundColor: "#c99a3d",
                 color: "white",
-                padding: 4,
+                padding: 2,
                 width: "75%",
                 fontSize: "1rem",
                 fontWeight: "700",
@@ -62,16 +62,16 @@ const Leverage = () => {
             <TableRow>
               <TableCell
                 sx={{
-                  padding: 4,
+                  padding: 2,
                   fontSize: "1rem",
                   fontWeight: "500",
                 }}
               >
-                MiN CREDIT SCORE
+                MIN CREDIT SCORE
               </TableCell>
               <TableCell
                 sx={{
-                  padding: 4,
+                  padding: 2,
                   fontSize: "1rem",
                   fontWeight: "500",
                   backgroundColor: "#dff2d8",

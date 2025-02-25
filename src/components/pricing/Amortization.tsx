@@ -21,40 +21,42 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 
-const seasoningCategories = [
-  { label: "Cash Out", value: "6 Months" },
-  { label: "Rate and Term", value: "3 Months" },
+const amortiaztionData = [
+  { label: "30 Year", value: "" },
+  { label: "25 Year", value: "" },
+  { label: "20 Year", value: "" },
+  { label: "Interest Only", value: "" },
 ];
 
-const Seasoning = () => {
-  const [seasoningRows, setSeasoningRows] = useState(seasoningCategories);
-  const [editSeasoningMode, setEditSeasoningMode] = useState(false);
-  const [editedSeasoningRows, setEditedSeasoningRows] = useState([
-    ...seasoningCategories,
+const Amortization = () => {
+  const [amortizationRows, setAmortizationRows] = useState(amortiaztionData);
+  const [editAmortizationMode, setEditAmortizationMode] = useState(false);
+  const [editedAmortizationRows, setEditedAmortizationRows] = useState([
+    ...amortiaztionData,
   ]);
   const [expanded, setExpanded] = useState(false);
 
-  const handleSeasoningEditClick = (event: React.MouseEvent) => {
-    setEditSeasoningMode(!editSeasoningMode);
+  const handleAmortizationEditClick = (event: React.MouseEvent) => {
+    setEditAmortizationMode(!editAmortizationMode);
     event.stopPropagation();
     setExpanded(true);
   };
 
-  const handleSeasoningChange = (index: number, value: string) => {
-    const newRows = [...editedSeasoningRows];
+  const handleAmortizationChange = (index: number, value: string) => {
+    const newRows = [...editedAmortizationRows];
     newRows[index].value = value;
-    setEditedSeasoningRows(newRows);
+    setEditedAmortizationRows(newRows);
   };
 
-  const handleSeasoningSave = (event: React.MouseEvent) => {
-    setSeasoningRows([...editedSeasoningRows]);
-    setEditSeasoningMode(false);
+  const handleAmortizationSave = (event: React.MouseEvent) => {
+    setAmortizationRows([...editedAmortizationRows]);
+    setEditAmortizationMode(false);
     event.stopPropagation();
   };
 
   return (
     <Accordion
-      key="Seasoning"
+      key="Amortization"
       sx={{ "&.Mui-expanded": { margin: 0 } }}
       expanded={expanded}
       onChange={() => setExpanded(!expanded)}
@@ -64,31 +66,36 @@ const Seasoning = () => {
         sx={{ flexDirection: "row-reverse" }}
       >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
-          <strong>Seasoning Requirements</strong>
+          <strong>AMORTIZATION</strong>
         </Typography>
         <IconButton
           sx={{ marginLeft: "auto" }}
           onClick={
-            editSeasoningMode ? handleSeasoningSave : handleSeasoningEditClick
+            editAmortizationMode
+              ? handleAmortizationSave
+              : handleAmortizationEditClick
           }
         >
-          {editSeasoningMode ? <CheckIcon /> : <EditIcon />}
+          {editAmortizationMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer>
           <Table>
             <TableBody>
-              {seasoningRows.map((row, index) => (
+              {amortizationRows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell sx={{ width: "25%" }}>{row.label}</TableCell>
+                  <TableCell sx={{ width: "5%" }}>
+                    <Checkbox sx={{ padding: 0 }} />
+                  </TableCell>
                   <TableCell>
-                    {editSeasoningMode ? (
+                    {editAmortizationMode ? (
                       <TextField
                         fullWidth
-                        value={editedSeasoningRows[index].value}
+                        value={editedAmortizationRows[index].value}
                         onChange={(e) =>
-                          handleSeasoningChange(index, e.target.value)
+                          handleAmortizationChange(index, e.target.value)
                         }
                       />
                     ) : (
@@ -105,4 +112,4 @@ const Seasoning = () => {
   );
 };
 
-export default Seasoning;
+export default Amortization;

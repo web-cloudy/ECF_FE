@@ -30,9 +30,12 @@ const Dscr = () => {
   const [rows, setRows] = useState(DcsrData);
   const [editMode, setEditMode] = useState(false);
   const [editedRows, setEditedRows] = useState([...DcsrData]);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleEditClick = () => {
+  const handleEditClick = (event: React.MouseEvent) => {
     setEditMode(!editMode);
+    event.stopPropagation();
+    setExpanded(true);
     if (editMode) {
       setRows([...editedRows]);
     }
@@ -45,18 +48,24 @@ const Dscr = () => {
   };
 
   return (
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion
+      key="Dscr"
+      sx={{ "&.Mui-expanded": { margin: 0 } }}
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{ flexDirection: "row-reverse" }}
+      >
         <Typography sx={{ display: "flex", alignItems: "center", pl: 2 }}>
           <strong>DSCR(LTV Adjustment)</strong>
         </Typography>
-        <IconButton sx={{ marginLeft: "auto" }}>
-          <IconButton onClick={handleEditClick}>
-            {editMode ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
+        <IconButton sx={{ marginLeft: "auto" }} onClick={handleEditClick}>
+          {editMode ? <CheckIcon /> : <EditIcon />}
         </IconButton>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: 0 }}>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>

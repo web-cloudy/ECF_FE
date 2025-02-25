@@ -37,7 +37,7 @@ const PropertyRequirments = () => {
               sx={{
                 backgroundColor: "#c99a3d",
                 color: "white",
-                padding: 4,
+                padding: 2,
                 width: "25%",
                 borderRight: "1px solid white",
                 fontSize: "1rem",
@@ -50,7 +50,7 @@ const PropertyRequirments = () => {
               sx={{
                 backgroundColor: "#c99a3d",
                 color: "white",
-                padding: 4,
+                padding: 2,
                 width: "75%",
                 fontSize: "1rem",
                 fontWeight: "700",
