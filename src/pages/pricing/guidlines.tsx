@@ -9,6 +9,7 @@ import Navbar from "@/components/layout/Navbar";
 import PropertyRequirments from "@/components/pricing/PropertyRequirments";
 import Leverage from "@/components/pricing/Leverage";
 import LoanRequirments from "@/components/pricing/LoanRequirments";
+import BorrowerRequirments from "@/components/pricing/BorrowerRequirments";
 
 export default function Guidlines() {
   const [value, setValue] = useState("1");
@@ -45,7 +46,9 @@ export default function Guidlines() {
             <TabPanel value="3">
               <LoanRequirments />
             </TabPanel>
-            <TabPanel value="4">This is Borrower Requirments table.</TabPanel>
+            <TabPanel value="4">
+              <BorrowerRequirments />
+            </TabPanel>
           </TabContext>
         </Box>
       </div>

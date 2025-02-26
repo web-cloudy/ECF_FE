@@ -160,13 +160,17 @@ const PropertyRequirmentsModal = () => {
           </TableHead>
         </Table>
       </TableContainer>
-      <Accordion key="ECFM" defaultExpanded>
+      <Accordion
+        key="ECFM"
+        defaultExpanded
+        sx={{ "&.Mui-expanded": { margin: 0 } }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>
             <strong>ECFM</strong>
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: 0 }}>
           <TableContainer>
             <Table>
               <TableHead>
@@ -213,13 +217,13 @@ const PropertyRequirmentsModal = () => {
           data: seasoningRequirementsCategories,
         },
       ].map((section) => (
-        <Accordion key={section.title}>
+        <Accordion key={section.title} sx={{ "&.Mui-expanded": { margin: 0 } }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>
               <strong>{section.title}</strong>
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails sx={{ padding: 0 }}>
             <TableContainer>
               <Table>
                 <TableBody>

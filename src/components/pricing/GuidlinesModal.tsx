@@ -7,6 +7,9 @@ import TabPanel from "@mui/lab/TabPanel";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
 import PropertyRequirmentsModal from "./PropertyRequirmentsModal";
+import LoanRequirmentsModal from "./LoanRequirmentsModal";
+import LeverageModal from "./LeverageModal";
+import BorrowerRequirmentsModal from "./BorrowerRequirmentsModal";
 
 export default function GuidlinesModal() {
   const [value, setValue] = useState("1");
@@ -37,9 +40,15 @@ export default function GuidlinesModal() {
             <TabPanel value="1">
               <PropertyRequirmentsModal />
             </TabPanel>
-            <TabPanel value="2">This is Leverage/Credit table.</TabPanel>
-            <TabPanel value="3">This is Loan Requirments table.</TabPanel>
-            <TabPanel value="4">This is Borrower Requirments table.</TabPanel>
+            <TabPanel value="2">
+              <LeverageModal />
+            </TabPanel>
+            <TabPanel value="3">
+              <LoanRequirmentsModal />
+            </TabPanel>
+            <TabPanel value="4">
+              <BorrowerRequirmentsModal />
+            </TabPanel>
           </TabContext>
         </Box>
       </div>
