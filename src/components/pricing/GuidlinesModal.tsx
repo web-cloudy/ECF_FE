@@ -6,12 +6,12 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
-import PropertyRequirments from "@/components/pricing/PropertyRequirments";
-import Leverage from "@/components/pricing/Leverage";
-import LoanRequirments from "@/components/pricing/LoanRequirments";
-import BorrowerRequirments from "@/components/pricing/BorrowerRequirments";
+import PropertyRequirmentsModal from "./PropertyRequirmentsModal";
+import LoanRequirmentsModal from "./LoanRequirmentsModal";
+import LeverageModal from "./LeverageModal";
+import BorrowerRequirmentsModal from "./BorrowerRequirmentsModal";
 
-export default function Guidlines() {
+export default function GuidlinesModal() {
   const [value, setValue] = useState("1");
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
@@ -21,7 +21,7 @@ export default function Guidlines() {
   return (
     <div>
       <div>
-        <h1 className="text-black text-[24px] leading-[36px] font-semibold py-4 px-8">
+        <h1 className="text-black text-[24px] leading-[36px] font-semibold">
           Guidlines
         </h1>
         <Box sx={{ width: "100%", typography: "body1" }}>
@@ -38,16 +38,16 @@ export default function Guidlines() {
               </TabList>
             </Box>
             <TabPanel value="1">
-              <PropertyRequirments />
+              <PropertyRequirmentsModal />
             </TabPanel>
             <TabPanel value="2">
-              <Leverage />
+              <LeverageModal />
             </TabPanel>
             <TabPanel value="3">
-              <LoanRequirments />
+              <LoanRequirmentsModal />
             </TabPanel>
             <TabPanel value="4">
-              <BorrowerRequirments />
+              <BorrowerRequirmentsModal />
             </TabPanel>
           </TabContext>
         </Box>
@@ -56,7 +56,7 @@ export default function Guidlines() {
   );
 }
 
-Guidlines.getLayout = (page: ReactNode) => {
+GuidlinesModal.getLayout = (page: ReactNode) => {
   return (
     <div className="flex">
       <Sidebar />

@@ -17,17 +17,16 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import Title from "./TItle";
-import Occupancy from "./Occupancy";
-import Seasoning from "./Seasoning";
-import Ecfm from "./Ecfm";
+import PurchaseRateTerm from "./PurchaseRateTerm";
+import Refinances from "./Refinances";
+import Dscr from "./Dscr";
 
 const tableBorderRound = {
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
 };
 
-const PropertyRequirments = () => {
+const Leverage = () => {
   return (
     <Container maxWidth={false}>
       <TableContainer sx={tableBorderRound}>
@@ -59,14 +58,36 @@ const PropertyRequirments = () => {
               ECFM
             </TableCell>
           </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                sx={{
+                  padding: 2,
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                }}
+              >
+                MIN CREDIT SCORE
+              </TableCell>
+              <TableCell
+                sx={{
+                  padding: 2,
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                  backgroundColor: "#dff2d8",
+                }}
+              >
+                680
+              </TableCell>
+            </TableRow>
+          </TableBody>
         </Table>
       </TableContainer>
-      <Ecfm />
-      <Title />
-      <Occupancy />
-      <Seasoning />
+      <PurchaseRateTerm />
+      <Refinances />
+      <Dscr />
     </Container>
   );
 };
 
-export default PropertyRequirments;
+export default Leverage;
