@@ -16,7 +16,7 @@ const TasksContent: React.FC = () => {
   const [state, setState] = useState(true);
 
   const handleChange = () => {
-    state ? setState(false) : setState(true);
+    setState(!state);
   };
 
   const [showStyle, setShowStyle] = useState(true);
