@@ -15,7 +15,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   return (
     <li
       onClick={onClick} // Notify parent when clicked
-      className="relative flex items-center space-x-4 pl-[28px] py-[12px] hover:bg-[#F5FBEA] hover:text-[#006838] cursor-pointer group"
+      className={`relative flex items-center space-x-4 pl-[28px] py-[12px] cursor-pointer group rounded-md ${
+        isActive ? "bg-[#009345]" : "bg-transparent hover:bg-[#F5FBEA]"
+      }`}
     >
       <span
         className="icon flex justify-center items-center"
@@ -23,14 +25,13 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       >
         {icon}
       </span>
-      <span className="font-lato font-medium text-[14px] leading-[16px] text-[#4F5B67] group-hover:text-[#006838]">
+      <span
+        className={`font-lato font-medium text-[14px] leading-[16px] ${
+          isActive ? "text-white" : "text-[#4F5B67] group-hover:text-[#006838]"
+        }`}
+      >
         {title}
       </span>
-      <span
-        className={`absolute right-[1px] top-0 h-full w-[3px] ${
-          isActive ? "bg-[#009345]" : "bg-transparent"
-        }`}
-      />
     </li>
   );
 };

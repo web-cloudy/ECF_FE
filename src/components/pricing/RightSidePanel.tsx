@@ -16,9 +16,10 @@ import {
   TableCell,
   tableCellClasses,
   Modal,
+  IconButton,
 } from "@mui/material";
 import GuidlinesModal from "./GuidlinesModal";
-
+import CloseIcon from "@mui/icons-material/Close";
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
@@ -143,11 +144,21 @@ export default function RightSidePanel() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={modalStyle}>
+                <IconButton
+                  onClick={handleClose}
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
                 <GuidlinesModal />
               </Box>
             </Modal>
           </div>
-          <TableContainer component={Paper}>
+          <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>

@@ -20,6 +20,9 @@ const Sidebar: React.FC = () => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(-1);
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
+  const [activeSubmenuItem, setActiveSubmenuItem] = useState<string | null>(
+    null
+  );
 
   const siderbarItems = [
     {
@@ -86,7 +89,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className="sidebar h-screen border-r-2 border-[#eaecf0] flex flex-col justify-between">
+    <div className="sidebar min-h-screen border-r-2 border-[#eaecf0] flex flex-col justify-between">
       {/* Top Section */}
       <div className="flex-1">
         {/* logo */}
@@ -102,7 +105,7 @@ const Sidebar: React.FC = () => {
         </div>
         {/* menu-group */}
         <nav>
-          <ul className="flex flex-col space-y-2">
+          <ul className="flex flex-col space-y-2 px-4">
             {siderbarItems.map((item, index) => (
               <div key={index}>
                 <SidebarItem
@@ -111,6 +114,7 @@ const Sidebar: React.FC = () => {
                   isActive={activeButton === index}
                   onClick={() => {
                     setActiveButton(index);
+                    setActiveSubmenuItem(null);
                     if (item.children) {
                       handleSubmenuToggle(index);
                     } else {
@@ -125,7 +129,12 @@ const Sidebar: React.FC = () => {
                       <SidebarItem
                         key={childIndex}
                         title={child.title}
-                        onClick={() => router.push(child.path)}
+                        isActive={activeSubmenuItem === child.path}
+                        onClick={() => {
+                          setActiveSubmenuItem(child.path); // Track active submenu item
+                          setActiveButton(-1); // Reset main button when submenu is clicked
+                          router.push(child.path);
+                        }}
                       />
                     ))}
                   </div>
@@ -136,7 +145,7 @@ const Sidebar: React.FC = () => {
         </nav>
       </div>
       {/* Bottom Section */}
-      <div className="mt-auto pb-0">
+      <div className="mt-auto pb-8">
         {/* Phone Component */}
         <Phone />
         {/* Bottom Navigation */}

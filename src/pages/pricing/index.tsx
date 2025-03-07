@@ -32,7 +32,7 @@ import {
   AccordionDetails,
   InputAdornment,
 } from "@mui/material";
-import { RemoveCircleOutline } from "@mui/icons-material";
+import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 import { SwitchProps } from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import RightSidePanel from "@/components/pricing/RightSidePanel";
@@ -104,16 +104,16 @@ const IOSSwitch = styled((props: SwitchProps) => (
 const CustomTextField = styled(TextField)`
   background-color: #f7f7f7;
   border-radius: 8px;
-  & .MuiOutlinedInput-notchedOutline: {
+  & .muioutlinedinput-notchedoutline: {
     border: none;
-  };
-  & .MuiSelect-select: {
+  }
+  & .muiselect-select: {
     padding: 10px 14px;
-  };
-  & .MuiInputBase-input::placeholder: {
+  }
+  & .muiinputbase-input::placeholder: {
     color: #bdbdbd;
   }
-`
+`;
 
 const CustomSelect = styled(Select)`
   border-radius: 50px;
@@ -176,7 +176,6 @@ function CustomTabPanel(props: TabPanelProps) {
     </div>
   );
 }
-
 export default function Pricing() {
   const dispatch = useDispatch<AppDispatch>();
   const [downloadTemplate, setDownloadTemplate] = useState("");
@@ -202,6 +201,10 @@ export default function Pricing() {
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
+
+  const [icon1, setIcon1] = useState(<AddCircleOutline sx={{ mr: 2 }} />);
+  const [icon2, setIcon2] = useState(<AddCircleOutline sx={{ mr: 2 }} />);
+  const [icon3, setIcon3] = useState(<AddCircleOutline sx={{ mr: 2 }} />);
 
   return (
     <div
@@ -273,18 +276,24 @@ export default function Pricing() {
                   <Grid2 size={6}>
                     <InputLabel>Loan Program</InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="">
                         Residential Bridge (Ex. Fix & Flip/Fix & Hold)
                       </MenuItem>
-                      <MenuItem value="item-1">Ground Up New Construction</MenuItem>
+                      <MenuItem value="item-1">
+                        Ground Up New Construction
+                      </MenuItem>
                       <MenuItem value="item-2">Multifamily Bridge</MenuItem>
                       <MenuItem value="item-3">Commercial Bridge</MenuItem>
                       <MenuItem value="item-4">Portfolio</MenuItem>
                     </Select>
                     <InputLabel>Loan Source</InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="item-1">
                         Refinance - (Property Already Owned)
                       </MenuItem>
@@ -295,17 +304,16 @@ export default function Pricing() {
                     </Select>
                     <InputLabel>Property Type</InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                     </Select>
                     <InputLabel>Closing Date</InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                     </Select>
-                    {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['DatePicker']}>
-                          <DatePicker label="Basic date picker" />
-                        </DemoContainer>
-                      </LocalizationProvider> */}
                     {!showAdvancedSection && (
                       <Button
                         sx={{
@@ -330,7 +338,9 @@ export default function Pricing() {
                       Has Customer Had Bankrupt in Past 4 Years?
                     </InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
@@ -340,7 +350,9 @@ export default function Pricing() {
                       Has Customer Had Any Forclusers in Past 4 years?{" "}
                     </InputLabel>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
@@ -365,21 +377,24 @@ export default function Pricing() {
                       Has Customer Had Bankrupt in Past 4 Years?
                     </Typography>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                     </Select>
-                    <FormControl variant="outlined" fullWidth>
-                    </FormControl>
+                    <FormControl variant="outlined" fullWidth></FormControl>
                   </Box>
                   <Box>
                     <Typography>
                       Has Customer Had Any Forclusers in Past 4 years?{" "}
                     </Typography>
                     <Select value="" displayEmpty fullWidth>
-                      <MenuItem disabled value="">Choose</MenuItem>
+                      <MenuItem disabled value="">
+                        Choose
+                      </MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
                       <MenuItem value="text">Text</MenuItem>
@@ -392,440 +407,642 @@ export default function Pricing() {
                 {showAdvancedSection && (
                   <Box>
                     <Box>
-                      <Typography variant="h5" fontWeight="bold">
-                        <RemoveCircleOutline sx={{ mr: 2, my: 2 }} />
-                        Property
-                      </Typography>
-                      <Card>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Property Information
+                      <Accordion
+                        style={{ boxShadow: "none" }}
+                        onChange={(event, expanded) =>
+                          setIcon1(
+                            expanded ? (
+                              <RemoveCircleOutline sx={{ mr: 2 }} />
+                            ) : (
+                              <AddCircleOutline sx={{ mr: 2 }} />
+                            )
+                          )
+                        }
+                      >
+                        <AccordionSummary style={{ padding: "0px" }}>
+                          <Typography variant="h5" fontWeight="bold">
+                            {icon1}
+                            Property
                           </Typography>
-                          <InputLabel>Address</InputLabel>
-                          <CustomTextField placeholder="Input Address" fullWidth />
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={4}>
-                              <InputLabel>Zip Code</InputLabel>
-                              <CustomTextField placeholder="Input" />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <InputLabel>State</InputLabel>
+                        </AccordionSummary>
+                        <AccordionDetails style={{ padding: "0px" }}>
+                          <Card
+                            style={{
+                              boxShadow: "none",
+                              border: "1px lightgray solid",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Property Information
+                              </Typography>
+                              <InputLabel>Address</InputLabel>
+                              <CustomTextField
+                                placeholder="Input Address"
+                                fullWidth
+                              />
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <InputLabel>Zip Code</InputLabel>
+                                  <CustomTextField placeholder="Input" />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <InputLabel>State</InputLabel>
+                                  <Select value="" displayEmpty fullWidth>
+                                    <MenuItem disabled value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="item-1">Item 1</MenuItem>
+                                    <MenuItem value="item-2">Item 2</MenuItem>
+                                    <MenuItem value="item-3">Item 3</MenuItem>
+                                    <MenuItem value="item-4">Item 4</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <InputLabel>City</InputLabel>
+                                  <CustomTextField placeholder="Input" />
+                                </Grid2>
+                              </Grid2>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>Property Type</InputLabel>
+                                  <Select value="" displayEmpty fullWidth>
+                                    <MenuItem disabled value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="item-1">Item 1</MenuItem>
+                                    <MenuItem value="item-2">Item 2</MenuItem>
+                                    <MenuItem value="item-3">Item 3</MenuItem>
+                                    <MenuItem value="item-4">Item 4</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>% of Commercial Use</InputLabel>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                                <Grid2 container size={12} spacing={2} my={2}>
+                                  <Grid2 size={6}>
+                                    <InputLabel>Unit Count</InputLabel>
+                                    <Select value="" displayEmpty fullWidth>
+                                      <MenuItem disabled value="">
+                                        Choose
+                                      </MenuItem>
+                                      <MenuItem value="item-1">Item 1</MenuItem>
+                                      <MenuItem value="item-2">Item 2</MenuItem>
+                                      <MenuItem value="item-3">Item 3</MenuItem>
+                                      <MenuItem value="item-4">Item 4</MenuItem>
+                                    </Select>
+                                  </Grid2>
+                                  <Grid2 size={6}>
+                                    <InputLabel>Occupied Units</InputLabel>
+                                    <Select value="" displayEmpty fullWidth>
+                                      <MenuItem disabled value="">
+                                        Choose
+                                      </MenuItem>
+                                      <MenuItem value="item-1">Item 1</MenuItem>
+                                      <MenuItem value="item-2">Item 2</MenuItem>
+                                      <MenuItem value="item-3">Item 3</MenuItem>
+                                      <MenuItem value="item-4">Item 4</MenuItem>
+                                    </Select>
+                                  </Grid2>
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Construction Description</InputLabel>
                               <Select value="" displayEmpty fullWidth>
-                                <MenuItem disabled value="">Choose</MenuItem>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
                                 <MenuItem value="item-1">Item 1</MenuItem>
                                 <MenuItem value="item-2">Item 2</MenuItem>
                                 <MenuItem value="item-3">Item 3</MenuItem>
                                 <MenuItem value="item-4">Item 4</MenuItem>
                               </Select>
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <InputLabel>City</InputLabel>
-                              <CustomTextField placeholder="Input" />
-                            </Grid2>
-                          </Grid2>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={6}>
-                              <InputLabel>Property Type</InputLabel>
+                            </CardContent>
+                          </Card>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Box>
+                    <Box>
+                      <Accordion
+                        style={{ boxShadow: "none" }}
+                        onChange={(event, expanded) =>
+                          setIcon2(
+                            expanded ? (
+                              <RemoveCircleOutline sx={{ mr: 2 }} />
+                            ) : (
+                              <AddCircleOutline sx={{ mr: 2 }} />
+                            )
+                          )
+                        }
+                      >
+                        <AccordionSummary style={{ padding: "0px" }}>
+                          <Typography variant="h5" fontWeight="bold">
+                            {icon2}
+                            Loan
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{ padding: "0px" }}>
+                          <Card
+                            sx={{
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                              boxShadow: "none",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Transaction Details
+                              </Typography>
+                              <InputLabel>Transaction Type</InputLabel>
                               <Select value="" displayEmpty fullWidth>
-                                <MenuItem disabled value="">Choose</MenuItem>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
                                 <MenuItem value="item-1">Item 1</MenuItem>
                                 <MenuItem value="item-2">Item 2</MenuItem>
                                 <MenuItem value="item-3">Item 3</MenuItem>
                                 <MenuItem value="item-4">Item 4</MenuItem>
                               </Select>
-                            </Grid2>
-                            <Grid2 size={6}>
-                              <InputLabel>% of Commercial Use</InputLabel>
-                              <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                            <Grid2 container size={12} spacing={2} my={2}>
-                              <Grid2 size={6}>
-                                <InputLabel>Unit Count</InputLabel>
-                                <Select value="" displayEmpty fullWidth>
-                                  <MenuItem disabled value="">Choose</MenuItem>
-                                  <MenuItem value="item-1">Item 1</MenuItem>
-                                  <MenuItem value="item-2">Item 2</MenuItem>
-                                  <MenuItem value="item-3">Item 3</MenuItem>
-                                  <MenuItem value="item-4">Item 4</MenuItem>
-                                </Select>
-                              </Grid2>
-                              <Grid2 size={6}>
-                                <InputLabel>Occupied Units</InputLabel>
-                                <Select value="" displayEmpty fullWidth>
-                                  <MenuItem disabled value="">Choose</MenuItem>
-                                  <MenuItem value="item-1">Item 1</MenuItem>
-                                  <MenuItem value="item-2">Item 2</MenuItem>
-                                  <MenuItem value="item-3">Item 3</MenuItem>
-                                  <MenuItem value="item-4">Item 4</MenuItem>
-                                </Select>
-                              </Grid2>
-                            </Grid2>
-                          </Grid2>
-                          <InputLabel>Construction Description</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                        </CardContent>
-                      </Card>
-                    </Box>
-                    <Box>
-                      <Typography variant="h5" fontWeight="bold">
-                        <RemoveCircleOutline sx={{ mr: 2, my: 2 }} />
-                        Loan
-                      </Typography>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Transaction Details
-                          </Typography>
-                          <InputLabel>Transaction Type</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                          <InputLabel>Exit Strategy</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                          <InputLabel>Cash Out</InputLabel>
-                          <Select value="yes" displayEmpty fullWidth>
-                            <MenuItem value="yes">Yes</MenuItem>
-                            <MenuItem value="no">No</MenuItem>
-                          </Select>
-                        </CardContent>
-                      </Card>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Property Financials
-                          </Typography>
-                          <InputLabel>Purchase Price</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>As Is Value</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>Rehab Budget</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>ARV</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                        </CardContent>
-                      </Card>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Rent Roll
-                          </Typography>
-                          <TableContainer>
-                            <Table>
-                              <TableHead>
-                                <TableRow>
-                                  <TableCell>Unit</TableCell>
-                                  <TableCell>Current Rent</TableCell>
-                                  <TableCell>Fair Market Rent</TableCell>
-                                </TableRow>
-                              </TableHead>
-                              <TableBody>
-                                <TableRow>
-                                  <TableCell>Unit 2</TableCell>
-                                  <TableCell>$0</TableCell>
-                                  <TableCell>$0</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                  <TableCell>Unit 3</TableCell>
-                                  <TableCell>$0</TableCell>
-                                  <TableCell>$0</TableCell>
-                                </TableRow>
-                              </TableBody>
-                            </Table>
-                          </TableContainer>
-                          <Grid2 container size={12} spacing={2} my={2}>
-                            <Grid2 size={6}>
-                              <InputLabel>Current Total</InputLabel>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                            <Grid2 size={6}>
-                              <InputLabel>Fair Market Total</InputLabel>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                          </Grid2>
-                          <InputLabel>Annual Taxes</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>
-                            }}
-                          />
-                          <InputLabel>Annual Property Insurance</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>
-                            }}
-                          />
-                          <InputLabel>Annual HOA</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>
-                            }}
-                          />
-                        </CardContent>
-                      </Card>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Refinance Additional Details
-                          </Typography>
-                          <InputLabel>Purchase Date</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                          <InputLabel>
-                            Cost of Completed Improvements
-                          </InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>
-                            }}
-                          />
-                          <InputLabel>Current Loan Balance</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>
-                            }}
-                          />
-                          <InputLabel>Current Lender</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="Input"
-                          />
-                          <InputLabel>Current Rate</InputLabel>
-                          <CustomTextField
-                            fullWidth
-                            placeholder="0.0%"
-                          />
-                          <InputLabel>Loan Maturity Date</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                        </CardContent>
-                      </Card>
-                    </Box>
-                    <Box>
-                      <Typography variant="h5" fontWeight="bold">
-                        <RemoveCircleOutline sx={{ mr: 2, my: 2 }} /> Borrower
-                      </Typography>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Borrower Information
-                          </Typography>
-                          <Grid2 container size={12} spacing={2} my={2}>
-                            <Grid2 size={6}>
-                              <InputLabel>First Name</InputLabel>
-                              <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                            <Grid2 size={6}>
-                              <InputLabel>Last Name</InputLabel>
-                              <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                          </Grid2>
-                          <InputLabel>Credit Score (Median)</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>US Citizen?</InputLabel>
-                          <Grid2 container size={12} spacing={2} mb={2}>
-                            <Grid2 size={6}>
+                              <InputLabel>Exit Strategy</InputLabel>
                               <Select value="" displayEmpty fullWidth>
-                                <MenuItem disabled value="">Choose</MenuItem>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>Cash Out</InputLabel>
+                              <Select value="yes" displayEmpty fullWidth>
                                 <MenuItem value="yes">Yes</MenuItem>
                                 <MenuItem value="no">No</MenuItem>
                               </Select>
-                            </Grid2>
-                            <Grid2 size={6}>
+                            </CardContent>
+                          </Card>
+                          <Card
+                            sx={{
+                              my: 2,
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                              boxShadow: "none",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Property Financials
+                              </Typography>
+                              <InputLabel>Purchase Price</InputLabel>
                               <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                          </Grid2>
-                        </CardContent>
-                      </Card>
-                      <Card sx={{ my: 2 }}>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Borrower History
+                              <InputLabel>As Is Value</InputLabel>
+                              <CustomTextField placeholder="Input" fullWidth />
+                              <InputLabel>Rehab Budget</InputLabel>
+                              <CustomTextField placeholder="Input" fullWidth />
+                              <InputLabel>ARV</InputLabel>
+                              <CustomTextField placeholder="Input" fullWidth />
+                            </CardContent>
+                          </Card>
+                          <Card
+                            sx={{
+                              my: 2,
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                              boxShadow: "none",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Rent Roll
+                              </Typography>
+                              <TableContainer>
+                                <Table>
+                                  <TableHead>
+                                    <TableRow>
+                                      <TableCell>Unit</TableCell>
+                                      <TableCell>Current Rent</TableCell>
+                                      <TableCell>Fair Market Rent</TableCell>
+                                    </TableRow>
+                                  </TableHead>
+                                  <TableBody>
+                                    <TableRow>
+                                      <TableCell>Unit 2</TableCell>
+                                      <TableCell>$0</TableCell>
+                                      <TableCell>$0</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell>Unit 3</TableCell>
+                                      <TableCell>$0</TableCell>
+                                      <TableCell>$0</TableCell>
+                                    </TableRow>
+                                  </TableBody>
+                                </Table>
+                              </TableContainer>
+                              <Grid2 container size={12} spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>Current Total</InputLabel>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>Fair Market Total</InputLabel>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Annual Taxes</InputLabel>
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">
+                                      $
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                              <InputLabel>Annual Property Insurance</InputLabel>
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">
+                                      $
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                              <InputLabel>Annual HOA</InputLabel>
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">
+                                      $
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </CardContent>
+                          </Card>
+                          <Card
+                            sx={{
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                              boxShadow: "none",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Refinance Additional Details
+                              </Typography>
+                              <InputLabel>Purchase Date</InputLabel>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>
+                                Cost of Completed Improvements
+                              </InputLabel>
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">
+                                      $
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                              <InputLabel>Current Loan Balance</InputLabel>
+                              <CustomTextField
+                                fullWidth
+                                placeholder="0"
+                                InputProps={{
+                                  startAdornment: (
+                                    <InputAdornment position="start">
+                                      $
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                              <InputLabel>Current Lender</InputLabel>
+                              <CustomTextField fullWidth placeholder="Input" />
+                              <InputLabel>Current Rate</InputLabel>
+                              <CustomTextField fullWidth placeholder="0.0%" />
+                              <InputLabel>Loan Maturity Date</InputLabel>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                            </CardContent>
+                          </Card>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Box>
+                    <Box>
+                      <Accordion
+                        style={{ boxShadow: "none" }}
+                        onChange={(event, expanded) =>
+                          setIcon3(
+                            expanded ? (
+                              <RemoveCircleOutline sx={{ mr: 2 }} />
+                            ) : (
+                              <AddCircleOutline sx={{ mr: 2 }} />
+                            )
+                          )
+                        }
+                      >
+                        <AccordionSummary style={{ padding: "0px" }}>
+                          <Typography variant="h5" fontWeight="bold">
+                            {icon3}
+                            Borrower
                           </Typography>
-                          <InputLabel>
-                            Current Rental Properties Owned
-                          </InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>
-                            Professional Licenses GC, RE, CPA etc
-                          </InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                          <InputLabel>
-                            Largest 3 Completed Rehab Sizes (Ex, 368k,125)
-                          </InputLabel>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                          </Grid2>
-                          <InputLabel>
-                            Largest 3 Completed Projects(Purchase + Rehab
-                            Amount)
-                          </InputLabel>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField
-                                fullWidth
-                                placeholder="0"
-                                InputProps={{
-                                  startAdornment: <InputAdornment position="start">$</InputAdornment>
-                                }}
-                              />
-                            </Grid2>
-                          </Grid2>
-                        </CardContent>
-                        <CardContent>
-                          <Typography variant="h6" fontWeight="bold">
-                            Liquidity
-                          </Typography>
-                          <InputLabel>Ground Up Deals Completed</InputLabel>
-                          <Select value="" displayEmpty fullWidth>
-                            <MenuItem disabled value="">Choose</MenuItem>
-                            <MenuItem value="item-1">Item 1</MenuItem>
-                            <MenuItem value="item-2">Item 2</MenuItem>
-                            <MenuItem value="item-3">Item 3</MenuItem>
-                            <MenuItem value="item-4">Item 4</MenuItem>
-                          </Select>
-                          <InputLabel>
-                            # Of Units For 3 Largest Ground Up Projects (Ex.
-                            45,12,3)
-                          </InputLabel>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                          </Grid2>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={6}>
+                        </AccordionSummary>
+                        <AccordionDetails style={{ padding: "0px" }}>
+                          <Card
+                            sx={{
+                              boxShadow: "none",
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Borrower Information
+                              </Typography>
+                              <Grid2 container size={12} spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>First Name</InputLabel>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel>Last Name</InputLabel>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>Credit Score (Median)</InputLabel>
+                              <CustomTextField placeholder="Input" fullWidth />
+                              <InputLabel>US Citizen?</InputLabel>
+                              <Grid2 container size={12} spacing={2} mb={2}>
+                                <Grid2 size={6}>
+                                  <Select value="" displayEmpty fullWidth>
+                                    <MenuItem disabled value="">
+                                      Choose
+                                    </MenuItem>
+                                    <MenuItem value="yes">Yes</MenuItem>
+                                    <MenuItem value="no">No</MenuItem>
+                                  </Select>
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                              </Grid2>
+                            </CardContent>
+                          </Card>
+                          <Card
+                            sx={{
+                              my: 2,
+                              boxShadow: "none",
+                              border: "1px solid lightgray",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Borrower History
+                              </Typography>
+                              <InputLabel>
+                                Current Rental Properties Owned
+                              </InputLabel>
+                              <CustomTextField placeholder="Input" fullWidth />
+                              <InputLabel>
+                                Professional Licenses GC, RE, CPA etc
+                              </InputLabel>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>
+                                Largest 3 Completed Rehab Sizes (Ex, 368k,125)
+                              </InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                              </Grid2>
+                              <InputLabel>
+                                Largest 3 Completed Projects(Purchase + Rehab
+                                Amount)
+                              </InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField
+                                    fullWidth
+                                    placeholder="0"
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment position="start">
+                                          $
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                </Grid2>
+                              </Grid2>
+                            </CardContent>
+                            <CardContent>
+                              <Typography variant="h6" fontWeight="bold">
+                                Liquidity
+                              </Typography>
                               <InputLabel>Ground Up Deals Completed</InputLabel>
+                              <Select value="" displayEmpty fullWidth>
+                                <MenuItem disabled value="">
+                                  Choose
+                                </MenuItem>
+                                <MenuItem value="item-1">Item 1</MenuItem>
+                                <MenuItem value="item-2">Item 2</MenuItem>
+                                <MenuItem value="item-3">Item 3</MenuItem>
+                                <MenuItem value="item-4">Item 4</MenuItem>
+                              </Select>
+                              <InputLabel>
+                                # Of Units For 3 Largest Ground Up Projects (Ex.
+                                45,12,3)
+                              </InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                              </Grid2>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={6}>
+                                  <InputLabel>
+                                    Ground Up Deals Completed
+                                  </InputLabel>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                                <Grid2 size={6}>
+                                  <InputLabel># Of Units For 3</InputLabel>
+                                  <CustomTextField
+                                    placeholder="Input"
+                                    fullWidth
+                                  />
+                                </Grid2>
+                              </Grid2>
+                              <Typography variant="h6" fontWeight="bold">
+                                Commercial
+                              </Typography>
+                              <InputLabel>
+                                #If 5+ unit Or Commercial Properties Owned
+                                (Currently or flipped)
+                              </InputLabel>
                               <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                            <Grid2 size={6}>
-                              <InputLabel># Of Units For 3</InputLabel>
-                              <CustomTextField placeholder="Input" fullWidth />
-                            </Grid2>
-                          </Grid2>
-                          <Typography variant="h6" fontWeight="bold">
-                            Commercial
-                          </Typography>
-                          <InputLabel>#If 5+ unit Or Commercial Properties Owned (Currently or flipped)</InputLabel>
-                          <CustomTextField placeholder="Input" fullWidth />
-                          <InputLabel>#Of Units For 3 Largest Completed Projects (Ex. 45,12,3)</InputLabel>
-                          <Grid2 container spacing={2} my={2}>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                            <Grid2 size={4}>
-                              <CustomTextField placeholder="0" />
-                            </Grid2>
-                          </Grid2>
-                        </CardContent>
-                      </Card>
-                      <Button sx={{ borderRadius: 50, fontWeight: 600, padding: 2 }} color="success" fullWidth>Calculate</Button>
+                              <InputLabel>
+                                #Of Units For 3 Largest Completed Projects (Ex.
+                                45,12,3)
+                              </InputLabel>
+                              <Grid2 container spacing={2} my={2}>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                                <Grid2 size={4}>
+                                  <CustomTextField placeholder="0" />
+                                </Grid2>
+                              </Grid2>
+                            </CardContent>
+                          </Card>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Button
+                        sx={{ borderRadius: 50, fontWeight: 600, padding: 2 }}
+                        color="success"
+                        fullWidth
+                      >
+                        Calculate
+                      </Button>
                     </Box>
                   </Box>
                 )}
