@@ -209,7 +209,7 @@ export default function Pricing() {
   return (
     <div
       className="content bg-[#EEEEEE] p-[16px]"
-      style={{ height: "calc(100vh - 60px)" }}
+      // style={{ height: "calc(100vh - 60px)" }}
     >
       <div className="rounded-[8px] pb-[16px]">
         <div className="flex p-4 justify-between items-center">
